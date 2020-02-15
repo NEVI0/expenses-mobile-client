@@ -1,5 +1,7 @@
 {
   "name": "expenses-mobile-client",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
