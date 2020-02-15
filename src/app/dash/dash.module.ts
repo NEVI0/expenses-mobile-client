@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { DashPageRoutingModule } from './dash-routing.module';
 import { DashPage } from './dash.page';
-import { AccountPage } from './account/account.page';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
     imports: [
@@ -17,7 +17,7 @@ import { AccountPage } from './account/account.page';
     ],
     declarations: [
         DashPage,
-        AccountPage
+        AccountComponent
     ]
 })
 

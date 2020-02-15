@@ -2,11 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { DashPage } from './dash.page';
-import { AccountPage } from './account/account.page';
+import { AccountComponent } from './account/account.component';
 
 const routes: Routes = [
-    { path: '', component: DashPage },
-    { path: 'account', component: AccountPage }
+    { path: '', component: DashPage, children:
+        [
+            { path: 'account', component: AccountComponent }
+        ]
+    },
 ];
 
 @NgModule({
