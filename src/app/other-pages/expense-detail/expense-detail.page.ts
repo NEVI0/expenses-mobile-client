@@ -21,18 +21,21 @@ export class ExpenseDetailPage implements OnInit {
                 {
                     text: 'Marcar como Pago',
                     icon: 'checkmark-done',
+                    cssClass: 'btn-one',
                     handler: () => {
                         console.log('Checkmark');
-                    }
+                    },
                 }, {
                     text: 'Editar Dados',
                     icon: 'brush',
+                    cssClass: 'btn-two',
                     handler: () => {
                         console.log('Update');
                     }
                 }, {
                     text: 'Excluir Despesa',
                     icon: 'trash-bin',
+                    cssClass: 'btn-tree',
                     handler: () => {
                         console.log('Delete');
                     }

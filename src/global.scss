@@ -45,6 +45,23 @@
 
 .action-sheet-group .action-sheet-title {
     text-align: center;
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.action-sheet-group-cancel button span .action-sheet-icon {
+    color: #000;
+}
+
+.action-sheet-group .btn-one span .action-sheet-icon {
+    color: #00C853;
+}
+.action-sheet-group .btn-two span .action-sheet-icon {
+    color: #ffce00;
+}
+.action-sheet-group .btn-tree span .action-sheet-icon {
+    color: #E53935;
 }
 /* END */
 
@@ -55,13 +72,15 @@
 }
 
 .form-group label {
+    color: #000;
     font-weight: bold;
 }
 
 .form-group input, .form-group textarea {
     margin-top: 5px;
     width: 100%;
-    border: 1px solid rgba(0, 0, 0, 0.7);
+    border: 1.5px solid rgba(0, 0, 0, 0.7);
+    color: rgba(0, 0, 0, 0.7);
     border-radius: 4px;
     padding: 6px 10px;
     font-size: 16px;
@@ -70,7 +89,7 @@
 }
 
 .form-group input:focus:not(.input-error) {
-    border-color: blue;
+    border-color: #6200EA;
 }
 
 .form-group .error ion-label {
@@ -78,7 +97,7 @@
 }
 
 .form-group .input-error {
-    border-color: red;
+    border-color: #E53935;
 }
 
 .btns ion-button:first-child {
