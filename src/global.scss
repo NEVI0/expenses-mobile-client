@@ -24,3 +24,64 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+/* All Header Styles */
+.header {
+    display: flex;
+    margin-top: 10px;
+}
+
+.header ion-title {
+    font-size: 25px;
+    font-weight: bold;
+}
+/* END */
+
+/* Action Sheet Styles */
+.action-sheet-group:not(.action-sheet-group-cancel) {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.action-sheet-group .action-sheet-title {
+    text-align: center;
+}
+/* END */
+
+/* Forms Styles */
+.form-group {
+    width: 100%;
+    margin-bottom: 23px;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.form-group input, .form-group textarea {
+    margin-top: 5px;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.7);
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.4s ease all;
+}
+
+.form-group input:focus:not(.input-error) {
+    border-color: blue;
+}
+
+.form-group .error ion-label {
+    font-size: 13px;
+}
+
+.form-group .input-error {
+    border-color: red;
+}
+
+.btns ion-button:first-child {
+    margin-bottom: 10px;
+}
+/* END */

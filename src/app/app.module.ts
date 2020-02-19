@@ -17,7 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
         BrowserModule,
         AppRoutingModule,
         ReactiveFormsModule,
-        HttpClientModule
+        HttpClientModule,
     ],
     declarations: [
         AppComponent

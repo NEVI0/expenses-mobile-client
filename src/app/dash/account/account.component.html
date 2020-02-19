@@ -1,3 +1,103 @@
-<p>
-  account works!
-</p>
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="12">
+                <div class="header">
+                    <ion-title color="primary">Minha Conta</ion-title>
+                    <div class="options-btn ion-text-right">
+                        <ion-buttons>
+                            <ion-button (click)="onOpenPopover($event)">
+                                <ion-icon slot="icon-only" name="ellipsis-horizontal"></ion-icon>
+                            </ion-button>
+                        </ion-buttons>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+
+                <div class="avatar">
+                    <img src="assets/images/user.png">
+                </div>
+                <div class="informations">
+                    <h2>User Name</h2>
+                    <p>email@gmail.com</p>
+                </div>
+
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12" padding>
+
+                <div class="container">
+                    <div class="header">
+                        <ion-title color="secondary">Tema do App</ion-title>
+                    </div>
+                    <div class="content">
+                        Aqui você pode alterar a cor do sistema em cores Escuras ou Claras. As cores dos textos e icones também mudarão conforme o tema, se escuro ficará branco senão ficará em preto.
+                    </div>
+                    <ion-card>
+                        <ion-card-content class="ion-no-padding">
+                            <ion-list lines="none" class="ion-no-padding">
+                                <ion-item>
+                                    <ion-label>Tema Escuro:</ion-label>
+                                    <ion-toggle></ion-toggle>
+                                </ion-item>
+                            </ion-list>
+                        </ion-card-content>
+                    </ion-card>
+                </div>
+
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+
+                <div class="container">
+                    <div class="header">
+                        <ion-title color="secondary">Redefinir minha Senha</ion-title>
+                    </div>
+                    <div class="content">
+                        Por motivos de segurança, deixamos a atualização de dados e a redefinição de senha separados, para que haja o melhor controle de segurança da sua conta. Nesta opção, será enviado um e-mail para que você possa redefinir sua senha.
+                    </div>
+                    <ion-card>
+                        <ion-card-content class="ion-no-padding">
+                            <ion-list lines="none" class="ion-no-padding">
+                                <ion-item>
+                                    <ion-label>Quero Redefinir</ion-label>
+                                    <ion-button color="secondary" fill="clear">Enviar E-mail</ion-button>
+                                </ion-item>
+                            </ion-list>
+                        </ion-card-content>
+                    </ion-card>
+                </div>
+
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+
+                <div class="container">
+                    <div class="header">
+                        <ion-title color="danger">Excluir Conta</ion-title>
+                    </div>
+                    <div class="content">
+                        Utilize essa opção se você não quiser mais possuir uma conta no nosso sistema. Lembre-se que quando sua conta for excluida, você não poderá mais recupera-lá.
+                    </div>
+                    <ion-card>
+                        <ion-card-content class="ion-no-padding">
+                            <ion-list lines="none" class="ion-no-padding">
+                                <ion-item>
+                                    <ion-label>Click para Excluir</ion-label>
+                                    <ion-button color="danger" fill="clear">Excluir</ion-button>
+                                </ion-item>
+                            </ion-list>
+                        </ion-card-content>
+                    </ion-card>
+                </div>
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

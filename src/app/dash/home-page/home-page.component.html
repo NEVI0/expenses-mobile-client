@@ -1,3 +1,87 @@
-<p>
-  home-page works!
-</p>
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="12">
+                <div class="header">
+                    <ion-title color="primary">Home</ion-title>
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12" padding>
+
+                <ion-card>
+                    <ion-card-header>
+                        <ion-card-title>Controle de Dados</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+
+                        <ion-list lines="none">
+                            <ion-item>
+                                <ion-icon slot="start" name="wallet" color="success"></ion-icon>
+                                <ion-label class="ion-label-title">Salário</ion-label>
+                                <ion-label class="ion-text-right">$1000,00</ion-label>
+                            </ion-item>
+                            <ion-item>
+                                <ion-icon slot="start" name="options" color="danger"></ion-icon>
+                                <ion-label class="ion-label-title">Total Gasto</ion-label>
+                                <ion-label class="ion-text-right">$2350,00</ion-label>
+                            </ion-item>
+                            <ion-item>
+                                <ion-icon slot="start" name="analytics" color="warning"></ion-icon>
+                                <ion-label class="ion-label-title">Média de Gastos</ion-label>
+                                <ion-label class="ion-text-right">$369,00</ion-label>
+                            </ion-item>
+                            <ion-item>
+                                <ion-icon slot="start" name="layers" color="primary"></ion-icon>
+                                <ion-label class="ion-label-title">Total de Despesas</ion-label>
+                                <ion-label class="ion-text-right">4</ion-label>
+                            </ion-item>
+                        </ion-list>
+
+                    </ion-card-content>
+                </ion-card>
+
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12" padding>
+
+                <ion-card>
+                    <ion-card-header>
+                        <ion-card-title>Suas Ultimas Despesas</ion-card-title>
+                        <ion-card-subtitle>10 Ultimas</ion-card-subtitle>
+                    </ion-card-header>
+                    <ion-card-content>
+
+                        <ion-list lines="none">
+                            <ion-item routerLink="/expense-detail">
+                                <ion-icon slot="start" name="reader" color="primary"></ion-icon>
+                                <ion-label class="ion-label-title">Nome</ion-label>
+                                <ion-label class="ion-text-right">$200,00</ion-label>
+                            </ion-item>
+                            <ion-item routerLink="/expense-detail">
+                                <ion-icon slot="start" name="reader" color="primary"></ion-icon>
+                                <ion-label class="ion-label-title">Nome 2</ion-label>
+                                <ion-label class="ion-text-right">$200,00</ion-label>
+                            </ion-item>
+                            <ion-item routerLink="/expense-detail">
+                                <ion-icon slot="start" name="reader" color="primary"></ion-icon>
+                                <ion-label class="ion-label-title">Nome 3</ion-label>
+                                <ion-label class="ion-text-right">$200,00</ion-label>
+                            </ion-item>
+                        </ion-list>
+
+                    </ion-card-content>
+                </ion-card>
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button routerLink="/add-expense">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>

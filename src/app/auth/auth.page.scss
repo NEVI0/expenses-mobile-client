@@ -7,33 +7,8 @@ ion-card {
 }
 
 ion-card-title {
+    font-size: 25px;
     font-weight: bold;
-}
-
-.form-group {
-    width: 100%;
-    margin: 10px 0;
-}
-
-.form-group label {
-    font-size: 16px;
-    font-weight: bold;
-    transition: 0.4s ease all;
-}
-
-.form-group input {
-    border: 2px solid rgba(0, 0, 0, 0.25);
-    border-radius: 4px;
-    padding: 3px 6px;
-    width: 100%;
-    font-size: 18px;
-    margin-top: 2px;
-    outline: none;
-    transition: 0.4s ease all;
-}
-
-.form-group input:focus {
-    border-color: #488AFF;
 }
 
 .buttons {
@@ -41,6 +16,7 @@ ion-card-title {
 }
 
 .buttons p {
+    color: #000;
     margin-top: 13px;
 }
 
@@ -52,6 +28,7 @@ ion-card-title {
     width: 15px;
     margin-bottom: 4px;
     margin-right: 4px;
+    color: rgba(0, 0, 0, 0.7);
 }
 
 .buttons p::after {
@@ -62,4 +39,5 @@ ion-card-title {
     width: 15px;
     margin-bottom: 4px;
     margin-left: 4px;
+    color: rgba(0, 0, 0, 0.7);
 }

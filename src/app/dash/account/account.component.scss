@@ -1,0 +1,38 @@
+ion-card {
+    box-shadow: 2px 2px 13px 2px rgba(0, 0, 0, 0.25);
+    margin-top: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+ion-label {
+    font-weight: bold;
+}
+
+.avatar {
+    text-align: center;
+}
+
+.avatar img {
+    width: 90px;
+    height: 90px;
+}
+
+.informations {
+    text-align: center;
+}
+
+.informations p {
+    margin-top: -6px;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+.container .content {
+    padding-top: 10px;
+    padding-left: 21px;
+    padding-right: 21px;
+    text-align: justify;
+}

@@ -6,7 +6,11 @@ import { IonicModule } from '@ionic/angular';
 
 import { DashPageRoutingModule } from './dash-routing.module';
 import { DashPage } from './dash.page';
+
 import { AccountComponent } from './account/account.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { AllExpensesComponent } from './all-expenses/all-expenses.component';
+import { PopoverComponent } from './account/popover/popover.component';
 
 @NgModule({
     imports: [
@@ -17,7 +21,13 @@ import { AccountComponent } from './account/account.component';
     ],
     declarations: [
         DashPage,
-        AccountComponent
+        AccountComponent,
+        AllExpensesComponent,
+        HomePageComponent,
+        PopoverComponent
+    ],
+    entryComponents: [
+        PopoverComponent
     ]
 })
 
