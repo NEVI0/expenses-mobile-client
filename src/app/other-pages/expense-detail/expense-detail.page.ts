@@ -35,7 +35,7 @@ export class ExpenseDetailPage implements OnInit {
                 }, {
                     text: 'Excluir Despesa',
                     icon: 'trash-bin',
-                    cssClass: 'btn-tree',
+                    cssClass: 'btn-three',
                     handler: () => {
                         console.log('Delete');
                     }
