@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+    production: true,
+    StorageTheme: '_app_storage_theme'
 };

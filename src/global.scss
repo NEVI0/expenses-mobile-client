@@ -49,9 +49,18 @@
     font-size: 16px;
     font-weight: bold;
 }
+.dark .action-sheet-group .action-sheet-title {
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+}
 
 .action-sheet-group-cancel button span .action-sheet-icon {
     color: #000;
+}
+.dark .action-sheet-group-cancel button span .action-sheet-icon {
+    color: #fff;
 }
 
 .action-sheet-group .btn-one span .action-sheet-icon {
@@ -75,6 +84,10 @@
     color: #000;
     font-weight: bold;
 }
+.dark .form-group label {
+    color: #fff;
+    font-weight: bold;
+}
 
 .form-group input, .form-group textarea {
     margin-top: 5px;
@@ -86,6 +99,18 @@
     font-size: 16px;
     outline: none;
     transition: 0.4s ease all;
+}
+.dark .form-group input, .dark .form-group textarea {
+    margin-top: 5px;
+    width: 100%;
+    border: 1.5px solid #fff;
+    color: #fff;
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.4s ease all;
+    background-color: #252525;
 }
 
 .form-group input:focus:not(.input-error) {
@@ -99,8 +124,31 @@
 .form-group .input-error {
     border-color: #E53935;
 }
+.dark .form-group .input-error {
+    border-color: #E53935;
+}
 
 .btns ion-button:first-child {
     margin-bottom: 10px;
+}
+/* END */
+
+/* Ion Card Styles */
+ion-card {
+    box-shadow: 2px 2px 13px 2px rgba(0, 0, 0, 0.25);
+}
+.dark ion-card {
+    box-shadow: 2px 2px 13px 2px rgba(255, 255, 255, 0.25);
+}
+/* END */
+
+/* Fieldset of Expense Detail */
+fieldset {
+    border: 1px solid #000;
+    border-radius: 4px;
+}
+.dark fieldset {
+    border: 1px solid #fff;
+    border-radius: 4px;
 }
 /* END */

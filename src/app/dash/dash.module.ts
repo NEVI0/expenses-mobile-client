@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { IonicStorageModule } from '@ionic/storage';
 import { IonicModule } from '@ionic/angular';
 
 import { DashPageRoutingModule } from './dash-routing.module';
@@ -17,7 +18,9 @@ import { PopoverComponent } from './account/popover/popover.component';
         CommonModule,
         ReactiveFormsModule,
         IonicModule,
-        DashPageRoutingModule
+        DashPageRoutingModule,
+        IonicStorageModule.forRoot()
+
     ],
     declarations: [
         DashPage,
