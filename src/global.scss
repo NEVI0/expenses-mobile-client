@@ -152,3 +152,21 @@ fieldset {
     border-radius: 4px;
 }
 /* END */
+
+/* Tab Bar Styles */
+ion-tab-bar {
+    border-top: 1px solid rgba(0, 0, 0, 0.25);
+}
+.dark ion-tab-bar {
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+}
+/* END */
+
+/* AccountComponent Popover Styles  */
+.popover ion-icon {
+    color: #000;
+}
+.dark .popover ion-icon {
+    color: #fff;
+}
+/* END */
