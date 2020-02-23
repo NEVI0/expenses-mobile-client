@@ -69,21 +69,21 @@
                             <div class="form-group" *ngIf="!isLoginMode">
                                 <label>Confirme sua Senha</label> <br>
 
-                                <input type="password" formControlName="confirm_password"
+                                <input type="password" formControlName="conf_password"
                                     [ngClass]="{
                                         'input-error':
-                                            form.get('confirm_password').touched &&
-                                            form.get('confirm_password').hasError('required') ||
-                                            form.get('confirm_password').value !== form.get('password').value
+                                            form.get('conf_password').touched &&
+                                            form.get('conf_password').hasError('required') ||
+                                            form.get('conf_password').value !== form.get('password').value
                                     }"
                                 >
 
-                                <div class="error" *ngIf="form.get('confirm_password').touched && form.get('confirm_password').hasError('required')">
+                                <div class="error" *ngIf="form.get('conf_password').touched && form.get('conf_password').hasError('required')">
                                     <ion-label color="danger">
                                         Você <strong>precisa</strong> confirmar a sua senha
                                     </ion-label>
                                 </div>
-                                <div class="error" *ngIf="form.get('confirm_password').touched && form.get('confirm_password').value !== form.get('password').value">
+                                <div class="error" *ngIf="form.get('conf_password').touched && form.get('conf_password').value !== form.get('password').value">
                                     <ion-label color="danger">
                                         As senhas não são <strong>iguais</strong>
                                     </ion-label>
@@ -91,22 +91,33 @@
                             </div>
 
                             <div class="buttons ion-text-center">
-                                <ion-button type="submit" expand="block" color="primary" *ngIf="isLoginMode"
-                                    [disabled]="!form.get('email').valid || !form.get('password').valid"
+                                <ion-button
+                                    type="submit"
+                                    expand="block"
+                                    color="primary"
+                                    *ngIf="isLoginMode"
+                                    [disabled]="isLoading || !form.get('email').valid || !form.get('password').valid"
                                 >
-                                    Entrar
+                                    {{ isLoading ? 'Carregando...' : 'Entrar' }}
                                 </ion-button>
 
-                                <ion-button type="submit" expand="block" color="primary" *ngIf="!isLoginMode"
-                                    [disabled]="!form.valid"
+                                <ion-button
+                                    type="submit"
+                                    expand="block"
+                                    color="primary"
+                                    *ngIf="!isLoginMode"
+                                    [disabled]="!form.valid || isLoading"
                                 >
-                                    Cadastrar
+                                    {{ isLoading ? 'Carregando...' : 'Cadastrar' }}
                                 </ion-button>
 
                                 <p>OU</p>
 
-                                <ion-button expand="block" fill="clear"
+                                <ion-button
+                                    expand="block"
+                                    fill="clear"
                                     (click)="isLoginMode = !isLoginMode"
+                                    [disabled]="isLoading"
                                 >
                                     {{ isLoginMode ? 'Cadastrar' : 'Cancelar' }}
                                 </ion-button>
@@ -124,7 +135,13 @@
         <ion-row>
             <ion-col size="12" padding>
                 <ion-card>
-                    <ion-button expand="block" fill="clear" size="small" (click)="onForgotPassword()">
+                    <ion-button
+                        expand="block"
+                        fill="clear"
+                        size="small"
+                        (click)="onForgotPassword()"
+                        [disabled]="isLoading"
+                    >
                         Esqueci minha Senha
                     </ion-button>
                 </ion-card>
