@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+import { AuthService } from '../../auth/auth.service';
+
 @Component({
   selector: 'app-add-expense',
   templateUrl: './add-expense.page.html',
@@ -12,7 +14,10 @@ export class AddExpensePage implements OnInit {
     public form: FormGroup;
     public total: number = 0;
 
-    constructor(private formBuilder: FormBuilder) {}
+    constructor(
+        private formBuilder: FormBuilder,
+        private authService: AuthService
+    ) {}
 
     ngOnInit() {
         const date = {
