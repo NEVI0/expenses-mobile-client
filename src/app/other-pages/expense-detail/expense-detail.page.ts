@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
 
+import { AuthService } from '../../auth/auth.service';
+
 @Component({
   selector: 'app-expense-detail',
   templateUrl: './expense-detail.page.html',
@@ -9,7 +11,10 @@ import { ActionSheetController } from '@ionic/angular';
 
 export class ExpenseDetailPage implements OnInit {
 
-    constructor(private actionSheetCtrl: ActionSheetController) {}
+    constructor(
+        private actionSheetCtrl: ActionSheetController,
+        private authService: AuthService
+    ) {}
 
     ngOnInit() {}
 
