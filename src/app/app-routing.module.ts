@@ -6,12 +6,12 @@ const routes: Routes = [
         path: '', redirectTo: 'dash', pathMatch: 'full'
     },
     {
-        path: 'dash',
-        loadChildren: () => import('./dash/dash.module').then( m => m.DashPageModule )
-    },
-    {
         path: 'auth',
         loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule )
+    },
+    {
+        path: 'dash',
+        loadChildren: () => import('./dash/dash.module').then( m => m.DashPageModule )
     },
     {
         path: 'expense-detail',
