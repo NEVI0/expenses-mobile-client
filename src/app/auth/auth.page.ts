@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { LoadingController, ToastController, AlertController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
+
+import { environment } from '../../environments/environment';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -12,15 +16,18 @@ import { LoadingController, ToastController, AlertController } from '@ionic/angu
 
 export class AuthPage implements OnInit {
 
-    isLoginMode: boolean = true;
-    form: FormGroup;
+    private readonly AppUserData = environment.StorageUserData;
+
+    public isLoginMode: boolean = true;
+    public form: FormGroup;
+    public isLoading: boolean = false;
 
     constructor(
-        private loadingCtrl: LoadingController,
-        private alertCtrl: AlertController,
-        private toastCtrl: ToastController,
         private formBuilder: FormBuilder,
-        private router: Router
+        private router: Router,
+        private authService: AuthService,
+        private toastCtrl: ToastController,
+        private storage: Storage
     ) {}
 
     ngOnInit() {
@@ -28,16 +35,52 @@ export class AuthPage implements OnInit {
             name: [ null, Validators.required ],
             email: [ null, [ Validators.required, Validators.email ] ],
             password: [ null, Validators.required ],
-            confirm_password: [ null, Validators.required ]
+            conf_password: [ null, Validators.required ]
         });
     }
 
     onSubmit() {
+        this.isLoading = true;
+        this.form.disable();
+
+        const stringify = JSON.stringify(this.form.value)
+
         if (this.isLoginMode) {
-            console.log("Login...")
-            this.router.navigate(['/dash']);
+            this.authService.login(JSON.parse(stringify)).subscribe(
+                resp => {
+                    this.isLoading = false;
+                    this.storage.set(this.AppUserData, JSON.stringify(resp));
+                    this.router.navigate(['/dash']);
+                },
+                err => {
+                    this.isLoading = false;
+                    this.form.enable();
+                    this.toastCtrl.create({
+                        message: err.error.message,
+                        duration: 3500
+                    }).then(el => {
+                        el.present();
+                    });
+                }
+            );
         } else {
-            console.log("Cadastrar...")
+            this.authService.signup(JSON.parse(stringify)).subscribe(
+                resp => {
+                    this.isLoading = false;
+                    this.storage.set(this.AppUserData, JSON.stringify(resp));
+                    this.router.navigate(['/dash']);
+                },
+                err => {
+                    this.isLoading = false;
+                    this.form.enable();
+                    this.toastCtrl.create({
+                        message: err.error.message,
+                        duration: 3500
+                    }).then(el => {
+                        el.present();
+                    });
+                }
+            );
         }
     }
 
