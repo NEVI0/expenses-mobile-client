@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
 
+import { Storage } from '@ionic/storage';
+
+import { environment } from '../../../../environments/environment';
+
 @Component({
   selector: 'app-popover',
   templateUrl: './popover.component.html',
@@ -9,16 +13,21 @@ import { PopoverController } from '@ionic/angular';
 })
 export class PopoverComponent implements OnInit {
 
+    private readonly AppUserData = environment.StorageUserData;
+
     constructor(
         private router: Router,
-        private popoverCtrl: PopoverController
+        private popoverCtrl: PopoverController,
+        private storage: Storage
     ) {}
 
     ngOnInit() {}
 
-    async onLogout() {
-        this.router.navigate(['/auth']);
-        await this.popoverCtrl.dismiss();
+    onLogout() {
+        this.storage.remove(this.AppUserData).then(async value => {
+            this.router.navigate(['/auth']);
+            await this.popoverCtrl.dismiss();
+        });
     }
 
     onUpdateAccount() {
