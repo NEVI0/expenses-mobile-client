@@ -33,7 +33,7 @@ To code, I've been using Node and MongoDB to do the Backend (API), and to do the
 
 # Optional
 
-After adding the cordova, download the app [Ionic DevApp](https://play.google.com/store/apps/details?id=io.ionic.devapp&hl=pt_BR "App") in your device.
+After adding cordova, download the app [Ionic DevApp](https://play.google.com/store/apps/details?id=io.ionic.devapp&hl=pt_BR "App") in your device.
 Now run in the terminal `ionic serve --devapp` to debbug the application in your device.
 
 # Links
