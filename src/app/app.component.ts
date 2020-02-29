@@ -3,8 +3,10 @@ import { Router } from '@angular/router';
 
 import { Storage } from '@ionic/storage';
 import { Platform, AlertController } from '@ionic/angular';
+
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 import { environment } from '../environments/environment';
 import { AuthService } from './auth/auth.service';
@@ -29,6 +31,7 @@ export class AppComponent implements OnInit {
         private router: Router,
         private authService: AuthService,
         private alertCtrl: AlertController,
+        private screenOrientation: ScreenOrientation
     ) {
         this.initializeApp();
     }
@@ -37,6 +40,7 @@ export class AppComponent implements OnInit {
         this.platform.ready().then(() => {
             this.statusBar.styleDefault();
             this.splashScreen.hide();
+            this.screenOrientation.lock('portrait');
         });
     }
 
