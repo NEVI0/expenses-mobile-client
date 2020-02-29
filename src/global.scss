@@ -87,6 +87,10 @@
     text-align: justify;
     color: #000;
 }
+.dark .alert-wrapper .alert-message {
+    text-align: justify;
+    color: #fff;
+}
 /* END */
 
 /* Forms Styles */
@@ -161,10 +165,12 @@ ion-card {
 fieldset {
     border: 1px solid #000;
     border-radius: 4px;
+    padding: 15px;
 }
 .dark fieldset {
     border: 1px solid #fff;
     border-radius: 4px;
+    padding: 15px;
 }
 /* END */
 
@@ -183,5 +189,32 @@ ion-tab-bar {
 }
 .dark .popover ion-icon {
     color: #fff;
+}
+/* END */
+
+/* My Cunston Error Message Styles */
+.my-custon-error-msg {
+
+    .error-header {
+        margin-top: 50px;
+        margin-bottom: 20px;
+    }
+
+    .error-header ion-title {
+        font-size: 30px;
+    }
+
+    .error-content {
+        padding: 2px 12px;
+        background-color: #E53935;
+        border-radius: 3px;
+        box-shadow: 1px 1px 20px 2px rgba(0, 0, 0, 0.25);
+        color: #fff;
+    }
+
+    .my-error-button {
+        margin-top: 20px;
+    }
+
 }
 /* END */
