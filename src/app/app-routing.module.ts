@@ -14,12 +14,12 @@ const routes: Routes = [
         loadChildren: () => import('./dash/dash.module').then( m => m.DashPageModule )
     },
     {
-        path: 'expense-detail',
-        loadChildren: () => import('./other-pages/expense-detail/expense-detail.module').then( m => m.ExpenseDetailPageModule )
+        path: 'expense-detail/:id/:token',
+        loadChildren: () => import('./pages/expense-detail/expense-detail.module').then( m => m.ExpenseDetailPageModule )
     },
     {
         path: 'add-expense',
-        loadChildren: () => import('./other-pages/add-expense/add-expense.module').then( m => m.AddExpensePageModule )
+        loadChildren: () => import('./pages/add-expense/add-expense.module').then( m => m.AddExpensePageModule )
     },
 ];
 
