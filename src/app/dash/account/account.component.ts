@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
+import { Router } from '@angular/router';
+
+import { PopoverController, AlertController, ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
 import { environment } from '../../../environments/environment';
 import { PopoverComponent } from './popover/popover.component';
+import { DashService } from '../dash.service';
 
 @Component({
   selector: 'app-account',
@@ -13,29 +16,43 @@ import { PopoverComponent } from './popover/popover.component';
 
 export class AccountComponent implements OnInit {
 
+    private readonly AppUserData = environment.StorageUserData;
     private readonly StorageTheme = environment.StorageTheme;
+
+    private userId: string;
+    private userToken: string;
+
+    public userName: string;
+    public userEmail: string;
     public darkMode: boolean;
 
     constructor(
         private popoverCtrl: PopoverController,
-        private storage: Storage
+        private storage: Storage,
+        private dashService: DashService,
+        private alertCtrl: AlertController,
+        private toastCtrl: ToastController,
+        private router: Router
     ) {}
 
     ngOnInit() {
-        if (document.body.classList.contains('light')) {
-			this.darkMode = false;
-		} else {
-			this.darkMode = true;
-		}
+        this.onStart();
     }
 
-    async onOpenPopover(ev: any) {
-        const popover = await this.popoverCtrl.create({
-            component: PopoverComponent,
-            event: ev,
-            translucent: true
+    onStart() {
+        if (document.body.classList.contains('light')) {
+            this.darkMode = false;
+        } else {
+            this.darkMode = true;
+        }
+
+        this.storage.get(this.AppUserData).then(value => {
+            const user = JSON.parse(value);
+            this.userId = user._id;
+            this.userToken = user.token;
+            this.userName = user.name;
+            this.userEmail = user.email;
         });
-        await popover.present();
     }
 
     onChangeTheme() {
@@ -54,6 +71,55 @@ export class AccountComponent implements OnInit {
 
             this.storage.set(this.StorageTheme, 'light');
         }
+    }
+
+    async onOpenPopover(ev: any) {
+        const popover = await this.popoverCtrl.create({
+            component: PopoverComponent,
+            event: ev,
+            translucent: true
+        });
+        await popover.present();
+    }
+
+    async onShowAlertAccount() {
+        const alert = await this.alertCtrl.create({
+            header: 'Alerta!',
+            message: 'Você tem certeza que quer deletar sua conta? Se sim, você <b>não poderá mais recuperar</b> seus dados',
+            buttons: [
+                {
+                    text: 'Não',
+                    role: 'cancel'
+                },
+                {
+                    text: 'Sim, quero deleta-lá',
+                    handler: () => this.onDeleteAccount()
+                }
+            ]
+        });
+        alert.present();
+    }
+
+    private onDeleteAccount() {
+        this.dashService.deleteUser(this.userId, this.userToken).subscribe(
+            async resp => {
+                const toast = await this.toastCtrl.create({
+                    message: 'Estamos deletando seus dados...'
+                });
+                toast.present();
+                this.storage.clear().then(value => {
+                    toast.dismiss();
+                    this.router.navigate(['/auth'])
+                });
+            },
+            async err => {
+                const toast = await this.toastCtrl.create({
+                    message: err.error.message,
+                    duration: 3500
+                });
+                toast.present();
+            }
+        );
     }
 
 }

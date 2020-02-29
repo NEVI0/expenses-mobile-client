@@ -21,8 +21,9 @@
                     <img src="assets/images/user.png">
                 </div>
                 <div class="informations">
-                    <h2>User Name</h2>
-                    <p>email@gmail.com</p>
+                    <h2>{{ userName }}</h2>
+                    <p>{{ userEmail }}</p>
+                    <p>{{ userSalary | currency }}</p>
                 </div>
 
             </ion-col>
@@ -90,7 +91,7 @@
                             <ion-list lines="none" class="ion-no-padding">
                                 <ion-item>
                                     <ion-label>Click para Excluir</ion-label>
-                                    <ion-button color="danger" fill="clear">Excluir</ion-button>
+                                    <ion-button color="danger" fill="clear" (click)="onShowAlertAccount()">Excluir</ion-button>
                                 </ion-item>
                             </ion-list>
                         </ion-card-content>

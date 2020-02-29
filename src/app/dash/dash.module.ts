@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { IonicStorageModule } from '@ionic/storage';
 import { IonicModule } from '@ionic/angular';
@@ -17,6 +18,7 @@ import { PopoverComponent } from './account/popover/popover.component';
     imports: [
         CommonModule,
         ReactiveFormsModule,
+        HttpClientModule,
         IonicModule,
         DashPageRoutingModule,
         IonicStorageModule.forRoot()

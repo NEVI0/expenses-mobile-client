@@ -41,6 +41,14 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.onStart();
+    }
+
+    ionViewWillEnter() {
+        this.onStart();
+    }
+
+    onStart() {
         this.storage.get(this.AppUserData).then(value => {
             this.authService.validateToken(JSON.parse(value)).subscribe(
                 async (resp: any) => {

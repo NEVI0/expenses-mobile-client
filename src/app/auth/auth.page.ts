@@ -49,6 +49,7 @@ export class AuthPage implements OnInit {
             this.authService.login(JSON.parse(stringify)).subscribe(
                 resp => {
                     this.isLoading = false;
+                    this.form.enable();
                     this.storage.set(this.AppUserData, JSON.stringify(resp));
                     this.router.navigate(['/dash']);
                 },
@@ -67,6 +68,7 @@ export class AuthPage implements OnInit {
             this.authService.signup(JSON.parse(stringify)).subscribe(
                 resp => {
                     this.isLoading = false;
+                    this.form.enable();
                     this.storage.set(this.AppUserData, JSON.stringify(resp));
                     this.router.navigate(['/dash']);
                 },
@@ -84,8 +86,38 @@ export class AuthPage implements OnInit {
         }
     }
 
-    onForgotPassword() {
-        console.log('Esqueci... ;)');
+    async onForgotPassword() {
+
+        if (this.form.get('email').value == '') {
+            const toast = await this.toastCtrl.create({
+                message: 'Você precisa indicar um e-mail no formulário',
+                duration: 3500
+            });
+            toast.present();
+        } else {
+
+            const stringify = JSON.stringify(this.form.value)
+
+            this.authService.forgotPassword(JSON.parse(stringify)).subscribe(
+                async resp => {
+                    const toast = await this.toastCtrl.create({
+                        message: 'Um e-mail foi enviado para o e-mail indicado',
+                        duration: 3500
+                    });
+                    toast.present();
+                },
+                async err => {
+                    const toast = await this.toastCtrl.create({
+                        message: err.error.message,
+                        duration: 3500
+                    });
+                    toast.present();
+                }
+            );
+
+        }
+
+        
     }
 
 }

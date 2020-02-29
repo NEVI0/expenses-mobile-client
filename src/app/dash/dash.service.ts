@@ -4,7 +4,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap, take } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
-import { AuthService } from '../auth/auth.service';
 import { Expense } from '../interfaces/Expense';
 import { DataController } from '../interfaces/DataController';
 
@@ -16,73 +15,89 @@ export class DashService {
 
     private readonly OpenedApiUrl = environment.OpenedApiUrl;
     private readonly BlockedApiUrl = environment.BlockedApiUrl;
+    private readonly AppUserData = environment.StorageUserData;
 
-    private _user = this.authService.user;
+    constructor(private http: HttpClient) {}
 
-    private headers = new HttpHeaders({
-        'Authorization': this.authService.user.token
-    });
-
-    constructor(
-        private authService: AuthService,
-        private http: HttpClient
-    ) {}
-
-    get user() {
-        return this._user;
-    }
-
-    getAllExpenses() {
-        return this.http.get<Expense[]>(`${this.BlockedApiUrl}/expenses/${this.authService.user._id}`, {
-			headers: this.headers
+    getAllExpenses(_id: string, token: string) {
+        return this.http.get<Expense[]>(`${this.BlockedApiUrl}/expenses/${_id}`, {
+			headers: new HttpHeaders({
+                'Authorization': token
+            })
 		}).pipe(
 			tap(resp => resp)
 		);
     }
 
-    getLastTenExpenses() {
-        return this.http.get<Expense[]>(`${this.BlockedApiUrl}/lastExpenses/${this.authService.user._id}`, {
-			headers: this.headers
+    getLastTenExpenses(_id: string, token: string) {
+        return this.http.get<Expense[]>(`${this.BlockedApiUrl}/lastExpenses/${_id}`, {
+			headers: new HttpHeaders({
+                'Authorization': token
+            })
 		}).pipe(
 			tap(resp => resp)
 		);
     }
 
-    getOnlyOneExpense(_id: string) {
+    getOnlyOneExpense(_id: string, token: string) {
         return this.http.get<Expense>(`${this.BlockedApiUrl}/expense/${_id}`, {
-			headers: this.headers
+			headers: new HttpHeaders({
+                'Authorization': token
+            })
 		}).pipe(
             take(1)
         );
     }
 
-    getUserDataCtrl() {
-        return this.http.get<DataController>(`${this.BlockedApiUrl}/dataController/${this.authService.user._id}`, {
-			headers: this.headers
+    getUserDataCtrl(_id: string, token: string) {
+        return this.http.get<DataController>(`${this.BlockedApiUrl}/dataController/${_id}`, {
+			headers: new HttpHeaders({
+                'Authorization': token
+            })
 		}).pipe(
 			tap(resp => resp)
 		);
     }
 
-    createExpense(body: JSON) {
+    createExpense(body: JSON, token: string) {
         return this.http.post(`${this.BlockedApiUrl}/expenses/`, body, {
-			headers: this.headers
+			headers: new HttpHeaders({
+                'Authorization': token
+            })
 		}).pipe(
             take(1)
         );
     }
 
-    updateExpense(body: JSON, _id: string) {
+    updateExpense(body: JSON, _id: string, token: string) {
         return this.http.put<Expense>(`${this.BlockedApiUrl}/expenses/${_id}`, body, {
-			headers: this.headers
+			headers: new HttpHeaders({
+                'Authorization': token
+            })
 		}).pipe(
             take(1)
         );
     }
 
-    deleteExpense(_id: string) {
+    deleteExpense(_id: string, token: string) {
         return this.http.delete(`${this.BlockedApiUrl}/expenses/${_id}`, {
-			headers: this.headers
+			headers: new HttpHeaders({
+                'Authorization': token
+            })
+		}).pipe(
+            take(1)
+        );
+    }
+
+
+
+
+
+    deleteUser(_id: string, token: string) {
+        return this.http.delete(`${this.BlockedApiUrl}/user/${_id}`, {
+			headers: new HttpHeaders({
+                'Authorization': token
+            })
 		}).pipe(
             take(1)
         );

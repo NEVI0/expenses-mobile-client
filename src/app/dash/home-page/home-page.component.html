@@ -1,4 +1,8 @@
 <ion-content padding>
+    <ion-refresher slot="fixed" class="ion-margin-top" (ionRefresh)="onRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
     <ion-grid>
         <ion-row>
             <ion-col size="12">
@@ -10,70 +14,84 @@
         <ion-row>
             <ion-col size="12" padding>
 
-                <ion-card>
-                    <ion-card-header>
-                        <ion-card-title>Controle de Dados</ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>
+                <div *ngIf="userDataCtrl$ | async as userDataCtrl">
 
-                        <ion-list lines="none">
-                            <ion-item>
-                                <ion-icon slot="start" name="wallet" color="success"></ion-icon>
-                                <ion-label class="ion-label-title">Salário</ion-label>
-                                <ion-label class="ion-text-right">$1000,00</ion-label>
-                            </ion-item>
-                            <ion-item>
-                                <ion-icon slot="start" name="options" color="danger"></ion-icon>
-                                <ion-label class="ion-label-title">Total Gasto</ion-label>
-                                <ion-label class="ion-text-right">$2350,00</ion-label>
-                            </ion-item>
-                            <ion-item>
-                                <ion-icon slot="start" name="analytics" color="warning"></ion-icon>
-                                <ion-label class="ion-label-title">Média de Gastos</ion-label>
-                                <ion-label class="ion-text-right">$369,00</ion-label>
-                            </ion-item>
-                            <ion-item>
-                                <ion-icon slot="start" name="layers" color="primary"></ion-icon>
-                                <ion-label class="ion-label-title">Total de Despesas</ion-label>
-                                <ion-label class="ion-text-right">4</ion-label>
-                            </ion-item>
-                        </ion-list>
+                    <div *ngIf="userDataCtrl.numberOfExpenses == 0 || userDataCtrl == null; else dataCtrl"></div>
 
-                    </ion-card-content>
-                </ion-card>
+                    <ng-template #dataCtrl>
+                        <ion-card>
+                            <ion-card-header>
+                                <ion-card-title>Controle de Dados</ion-card-title>
+                            </ion-card-header>
+                            <ion-card-content>
+
+                                <ion-list lines="none">
+                                    <ion-item>
+                                        <ion-icon slot="start" name="wallet" color="success"></ion-icon>
+                                        <ion-label class="ion-label-title">Salário</ion-label>
+                                        <ion-label class="ion-text-right">{{ userSalary | currency }}</ion-label>
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-icon slot="start" name="options" color="danger"></ion-icon>
+                                        <ion-label class="ion-label-title">Total Gasto</ion-label>
+                                        <ion-label class="ion-text-right">{{ userDataCtrl.sumOfValues | currency }}</ion-label>
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-icon slot="start" name="analytics" color="warning"></ion-icon>
+                                        <ion-label class="ion-label-title">Média de Gastos</ion-label>
+                                        <ion-label class="ion-text-right">{{ userDataCtrl.avgOfValues | currency }}</ion-label>
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-icon slot="start" name="layers" color="primary"></ion-icon>
+                                        <ion-label class="ion-label-title">Total de Despesas</ion-label>
+                                        <ion-label class="ion-text-right">{{ userDataCtrl.numberOfExpenses }}</ion-label>
+                                    </ion-item>
+                                </ion-list>
+
+                            </ion-card-content>
+                        </ion-card>
+                    </ng-template>
+
+                </div>
 
             </ion-col>
         </ion-row>
         <ion-row>
             <ion-col size="12" padding>
 
-                <ion-card>
-                    <ion-card-header>
-                        <ion-card-title>Suas Ultimas Despesas</ion-card-title>
-                        <ion-card-subtitle>10 Ultimas</ion-card-subtitle>
-                    </ion-card-header>
-                    <ion-card-content>
+                <div *ngIf="lastTenExpense$ | async as expenses; else loading">
 
-                        <ion-list lines="none">
-                            <ion-item routerLink="/expense-detail">
-                                <ion-icon slot="start" name="reader" color="primary"></ion-icon>
-                                <ion-label class="ion-label-title">Nome</ion-label>
-                                <ion-label class="ion-text-right">$200,00</ion-label>
-                            </ion-item>
-                            <ion-item routerLink="/expense-detail">
-                                <ion-icon slot="start" name="reader" color="primary"></ion-icon>
-                                <ion-label class="ion-label-title">Nome 2</ion-label>
-                                <ion-label class="ion-text-right">$200,00</ion-label>
-                            </ion-item>
-                            <ion-item routerLink="/expense-detail">
-                                <ion-icon slot="start" name="reader" color="primary"></ion-icon>
-                                <ion-label class="ion-label-title">Nome 3</ion-label>
-                                <ion-label class="ion-text-right">$200,00</ion-label>
-                            </ion-item>
-                        </ion-list>
+                    <div *ngIf="expenses == '' || expenses == []; else lastExpenses" class="ion-padding">
+                        <fieldset class="ion-text-justify">
+                            <legend>Mensagem</legend>
+                            Você não tem nenhuma despesa cadastrada. Click no botão no <b>canto inferior direito</b> para adicionar despesas
+                        </fieldset>
+                        <p class="ion-text-center">
+                            Arraste para baixo para atualizar!
+                        </p>
+                    </div>
 
-                    </ion-card-content>
-                </ion-card>
+                    <ng-template #lastExpenses>
+                        <ion-card>
+                            <ion-card-header>
+                                <ion-card-title>Suas Ultimas Despesas</ion-card-title>
+                                <ion-card-subtitle>{{ numberOfExpenses }} Ultimas</ion-card-subtitle>
+                            </ion-card-header>
+                            <ion-card-content>
+
+                                <ion-list lines="none">
+                                    <ion-item *ngFor="let item of expenses" [routerLink]="['/', 'expense-detail', item._id, userToken]">
+                                        <ion-icon slot="start" name="reader" color="primary"></ion-icon>
+                                        <ion-label class="ion-label-title">{{ item.name }}</ion-label>
+                                        <ion-label class="ion-text-right">{{ item.value | currency }}</ion-label>
+                                    </ion-item>
+                                </ion-list>
+
+                            </ion-card-content>
+                        </ion-card>
+                    </ng-template>
+
+                </div>
 
             </ion-col>
         </ion-row>
@@ -84,4 +102,10 @@
             <ion-icon name="add"></ion-icon>
         </ion-fab-button>
     </ion-fab>
+
+    <ng-template #loading>
+        <div class="my-loading ion-text-center">
+            <ion-spinner color="primary"></ion-spinner>
+        </div>
+    </ng-template>
 </ion-content>
