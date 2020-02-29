@@ -25,12 +25,11 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-/* All Header Styles */
+/* Header Styles */
 .header {
     display: flex;
     margin-top: 10px;
 }
-
 .header ion-title {
     font-size: 25px;
     font-weight: bold;
@@ -42,27 +41,15 @@
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 }
-
 .action-sheet-group .action-sheet-title {
     text-align: center;
     color: #000;
     font-size: 16px;
     font-weight: bold;
 }
-.dark .action-sheet-group .action-sheet-title {
-    text-align: center;
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-}
-
 .action-sheet-group-cancel button span .action-sheet-icon {
     color: #000;
 }
-.dark .action-sheet-group-cancel button span .action-sheet-icon {
-    color: #fff;
-}
-
 .action-sheet-group .btn-one span .action-sheet-icon {
     color: #00C853;
 }
@@ -82,15 +69,11 @@
     color: #E53935;
     font-weight: bold;
 }
-
 .alert-wrapper .alert-message {
     text-align: justify;
     color: #000;
 }
-.dark .alert-wrapper .alert-message {
-    text-align: justify;
-    color: #fff;
-}
+
 /* END */
 
 /* Forms Styles */
@@ -98,16 +81,10 @@
     width: 100%;
     margin-bottom: 23px;
 }
-
 .form-group label {
     color: #000;
     font-weight: bold;
 }
-.dark .form-group label {
-    color: #fff;
-    font-weight: bold;
-}
-
 .form-group input, .form-group textarea {
     margin-top: 5px;
     width: 100%;
@@ -119,19 +96,6 @@
     outline: none;
     transition: 0.4s ease all;
 }
-.dark .form-group input, .dark .form-group textarea {
-    margin-top: 5px;
-    width: 100%;
-    border: 1.5px solid #fff;
-    color: #fff;
-    border-radius: 4px;
-    padding: 6px 10px;
-    font-size: 16px;
-    outline: none;
-    transition: 0.4s ease all;
-    background-color: #252525;
-}
-
 .form-group input:focus:not(.input-error) {
     border-color: #6200EA;
 }
@@ -139,14 +103,9 @@
 .form-group .error ion-label {
     font-size: 13px;
 }
-
 .form-group .input-error {
     border-color: #E53935;
 }
-.dark .form-group .input-error {
-    border-color: #E53935;
-}
-
 .btns ion-button:first-child {
     margin-bottom: 10px;
 }
@@ -156,21 +115,14 @@
 ion-card {
     box-shadow: 1px 1px 20px 2px rgba(0, 0, 0, 0.25);
 }
-.dark ion-card {
-    box-shadow: 1px 1px 20px 2px rgba(255, 255, 255, 0.25);
+.card-border-top {
+    border-top: 4px solid #6200EA;
 }
-/* END */
-
-/* Fieldset of Expense Detail */
-fieldset {
-    border: 1px solid #000;
-    border-radius: 4px;
-    padding: 15px;
+.card-border-botton {
+    border-bottom: 4px solid #6200EA;
 }
-.dark fieldset {
-    border: 1px solid #fff;
-    border-radius: 4px;
-    padding: 15px;
+.card-settings p {
+    color: #000;
 }
 /* END */
 
@@ -178,17 +130,11 @@ fieldset {
 ion-tab-bar {
     border-top: 1px solid rgba(0, 0, 0, 0.25);
 }
-.dark ion-tab-bar {
-    border-top: 1px solid rgba(255, 255, 255, 0.25);
-}
 /* END */
 
 /* AccountComponent Popover Styles  */
 .popover ion-icon {
     color: #000;
-}
-.dark .popover ion-icon {
-    color: #fff;
 }
 /* END */
 
@@ -214,6 +160,81 @@ ion-tab-bar {
 
     .my-error-button {
         margin-top: 20px;
+    }
+
+}
+/* END */
+
+/* Dark Styles */
+.dark {
+
+    .alert-wrapper .alert-message {
+        text-align: justify;
+        color: #fff;
+    }
+
+    .action-sheet-group .action-sheet-title {
+        text-align: center;
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .action-sheet-group-cancel button span .action-sheet-icon {
+        color: #fff;
+    }
+
+    .form-group label {
+        color: #fff;
+        font-weight: bold;
+    }
+
+    .form-group input, .form-group textarea {
+        margin-top: 5px;
+        width: 100%;
+        border: 1.5px solid #fff;
+        color: #fff;
+        border-radius: 4px;
+        padding: 6px 10px;
+        font-size: 16px;
+        outline: none;
+        transition: 0.4s ease all;
+        background-color: #252525;
+    }
+
+    .form-group .input-error {
+        border-color: #E53935;
+    }
+
+    ion-card {
+        --background: #252525 !important;
+        box-shadow: 1px 1px 20px 2px rgba(172, 172, 172, 0.25);
+
+        ion-card-content {
+            --background: #252525 !important;
+        }
+
+    }
+
+    ion-list {
+        background-color: #252525 !important;
+
+        ion-item {
+            --background: #252525 !important;
+        }
+
+    }
+
+    ion-tab-bar {
+        border-top: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .popover ion-icon {
+        color: #fff;
+    }
+
+    .card-settings p {
+        color: #fff;
     }
 
 }
