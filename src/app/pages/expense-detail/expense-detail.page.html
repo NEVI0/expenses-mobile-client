@@ -1,0 +1,87 @@
+<ion-content class="ion-padding">
+    <ion-grid>
+        <ion-row>
+            <ion-col size="12">
+                <div *ngIf="expense$ | async as expense; else loading">
+
+                    <div *ngIf="expense == undefined || expense == null; else expenseDetail" class="my-custon-error-msg">
+                        <div class="error-header ion-text-center">
+                            <ion-title color="danger">Alerta!</ion-title>
+                        </div>
+
+                        <div class="error-content ion-text-justify">
+                            <p>Parece que ocorreu um error nessa tela. Provavelmente o sistema não conseguiu achar uma despesa pelas <b>informações passadas por parametro</b>. Se você continuar tendo esses erros, por favor nos avise.</p>
+                        </div>
+
+                        <ion-button
+                            color="danger"
+                            expand="block"
+                            fill="clear"
+                            class="my-error-button"
+                            routerLink="/dash/home-page"
+                        >Voltar para a Home</ion-button>
+                    </div>
+
+                    <ng-template #expenseDetail>
+
+                        <ion-card class="expense-card-detail-border-top">
+                            <ion-card-header class="ion-text-center">
+                                <ion-card-title color="primary">{{ expense.name }}</ion-card-title>
+                            </ion-card-header>
+
+                            <ion-card-content class="ion-no-padding">
+                                <div class="ion-text-center description">
+                                    {{ expense.description }}
+                                </div>
+
+                                <ion-list lines="none" class="ion-margin-top">
+                                    <ion-item>
+                                        <ion-icon slot="start" name="logo-usd" color="danger"></ion-icon>
+                                        <ion-label class="ion-label-title">Valor</ion-label>
+                                        <ion-label class="ion-text-right">{{ expense.value | currency }}</ion-label>
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-icon slot="start" name="calendar" color="success"></ion-icon>
+                                        <ion-label class="ion-label-title">Data</ion-label>
+                                        <ion-label class="ion-text-right">{{ expense.date }}</ion-label>
+                                    </ion-item>
+                                    <ion-item>
+                                        <ion-icon slot="start" name="bookmark" color="warning"></ion-icon>
+                                        <ion-label class="ion-label-title">Status</ion-label>
+                                        <ion-label class="ion-text-right">{{ expense.status }}</ion-label>
+                                    </ion-item>
+                                </ion-list>
+                            </ion-card-content>
+                        </ion-card>
+
+                        <ion-card class="expense-card-detail-border-botton">
+                            <ion-card-content class="ion-padding">
+                                <ion-button
+                                    fill="clear"
+                                    color="primary"
+                                    expand="block"
+                                    (click)="onShowOptions()"
+                                >Opções</ion-button>
+
+                                <ion-button
+                                    fill="outline"
+                                    color="primary"
+                                    expand="block"
+                                    routerLink="/dash/home-page"
+                                >Voltar para a Home</ion-button>
+                            </ion-card-content>
+                        </ion-card>
+
+                    </ng-template>
+
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ng-template #loading>
+        <div class="my-loading ion-text-center">
+            <ion-spinner color="primary"></ion-spinner>
+        </div>
+    </ng-template>
+</ion-content>
