@@ -80,7 +80,11 @@
                             <ion-card-content>
 
                                 <ion-list lines="none">
-                                    <ion-item *ngFor="let item of expenses" [routerLink]="['/', 'expense-detail', item._id, userToken]">
+                                    <ion-item
+                                        *ngFor="let item of expenses"
+                                        [routerLink]="['/', 'expense-detail', item._id, userToken]"
+                                        [queryParams]="{ page: 'home' }"
+                                    >
                                         <ion-icon slot="start" name="reader" color="primary"></ion-icon>
                                         <ion-label class="ion-label-title">{{ item.name }}</ion-label>
                                         <ion-label class="ion-text-right">{{ item.value | currency }}</ion-label>

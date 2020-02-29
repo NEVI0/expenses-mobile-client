@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { Storage } from '@ionic/storage';
+import { IonContent } from '@ionic/angular';
 
 import { Observable } from 'rxjs';
 import { map, debounceTime, switchMap, distinctUntilChanged } from 'rxjs/operators';
@@ -18,6 +19,8 @@ import { environment } from '../../../environments/environment';
 
 export class AllExpensesComponent implements OnInit {
 
+    @ViewChild(IonContent, null) content: IonContent;
+
     private readonly AppUserData = environment.StorageUserData;
 
     public expenses$: Observable<Expense[] | any>;
@@ -25,6 +28,7 @@ export class AllExpensesComponent implements OnInit {
 
     public tag = new FormControl();
     public userToken: string;
+    public scrollToTop: boolean;
 
     constructor(
         private dashService: DashService,
@@ -59,6 +63,10 @@ export class AllExpensesComponent implements OnInit {
             this.onStart();
             event.target.complete();
         }, 1500);
+    }
+
+    onScrollToTop() {
+        this.content.scrollToTop(1500);
     }
 
 }

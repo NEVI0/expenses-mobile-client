@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content [scrollEvents]="true">
     <ion-refresher slot="fixed" class="ion-margin-top" (ionRefresh)="onRefresh($event)">
         <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
@@ -32,7 +32,11 @@
 
                             <ng-template #allResults>
                                 <ion-list lines="none">
-                                    <ion-item *ngFor="let item of results" [routerLink]="['/', 'expense-detail', item._id, userToken]">
+                                    <ion-item
+                                        *ngFor="let item of results"
+                                        [routerLink]="['/', 'expense-detail', item._id, userToken]"
+                                        [queryParams]="{ page: 'all-expenses' }"
+                                    >
                                         <ion-icon slot="start" name="reader" color="primary"></ion-icon>
                                         <ion-label class="ion-label-title">{{ item.name }}</ion-label>
                                         <ion-label class="ion-text-right">{{ item.value | currency }}</ion-label>
@@ -57,7 +61,12 @@
 
                     <ng-template #allExpenses>
                         <ion-list lines="none">
-                            <ion-item *ngFor="let item of expenses" [routerLink]="['/', 'expense-detail', item._id, userToken]" detail>
+                            <ion-item
+                                *ngFor="let item of expenses"
+                                [routerLink]="['/', 'expense-detail', item._id, userToken]"
+                                [queryParams]="{ page: 'all-expenses' }"
+                                detail
+                            >
                                 <ion-icon slot="start" name="reader" color="primary"></ion-icon>
                                 <ion-label class="ion-text-wrap">
                                     <h2 class="ion-list-title">{{ item.name }}</h2>
@@ -72,6 +81,12 @@
             </ion-col>
         </ion-row>
     </ion-grid>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="onScrollToTop()">
+            <ion-icon name="arrow-up"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
 
     <ng-template #loading>
         <div class="my-loading ion-text-center">

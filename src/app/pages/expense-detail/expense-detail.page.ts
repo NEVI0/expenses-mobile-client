@@ -22,6 +22,7 @@ export class ExpenseDetailPage implements OnInit {
 
     private expenseId: string;
     private token: string;
+    public lastPage: string;
 
     constructor(
         private actionSheetCtrl: ActionSheetController,
@@ -35,6 +36,14 @@ export class ExpenseDetailPage implements OnInit {
     ngOnInit() {
         this.expenseId = this.activatedRoute.snapshot.params['id'];
         this.token = this.activatedRoute.snapshot.params['token'];
+
+        this.activatedRoute.queryParams.subscribe(query => {
+            if (query.page == 'all-expenses') {
+                this.lastPage = `all-expenses`;
+            } else {
+                this.lastPage = `home-page`;
+            }
+        });
     }
 
     ionViewWillEnter() {
