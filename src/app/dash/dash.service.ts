@@ -59,6 +59,16 @@ export class DashService {
 		);
     }
 
+    search(_id: string, tag: string, token: string) {
+		return this.http.get<Expense[]>(`${this.BlockedApiUrl}/search/${_id}?tag=${tag}`, {
+			headers: new HttpHeaders({
+                'Authorization': token
+            })
+		}).pipe(
+			tap(resp => resp)
+		);
+	}
+
     createExpense(body: JSON, token: string) {
         return this.http.post(`${this.BlockedApiUrl}/expenses/`, body, {
 			headers: new HttpHeaders({
