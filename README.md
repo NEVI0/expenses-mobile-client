@@ -8,28 +8,46 @@ To code, I've been using Node and MongoDB to do the Backend (API), and to do the
 
 * Create a Signup / Login page :ballot_box_with_check:
 * Create the user authentication :ballot_box_with_check:
-* Make the connection with the API to bring the data :heavy_plus_sign:
-* Create a dashboard :heavy_plus_sign:
-* Create the pages: Home, All Expenses, Settings and Account :heavy_plus_sign:
+* Make the connection with the API to bring the data :ballot_box_with_check:
+* Create a dashboard :ballot_box_with_check:
+* Create the pages: Home, All Expenses and Account :ballot_box_with_check:
 * Create a button to switch the application theme :ballot_box_with_check:
 * Create a form to add new expenses :ballot_box_with_check:
-* Create a list to the expenses :x:
-* Create the searchbox :x:
-* Make the searchbox works out :x:
-* Make the User CRUD :x:
+* Create a list to the expenses :ballot_box_with_check:
+* Create the searchbox :ballot_box_with_check:
+* Make the searchbox works out :ballot_box_with_check:
+* Make the User CRUD :ballot_box_with_check:
 * Make the AVG of expenses by month :x:
+* Make a Splash Screen :x:
 * Improve the application style :x:
 
 # Configurations
 
-* Adding the Cordova:
+* Install the Dependencies:
+    ```
+    npm install
+    ```
+
+* Ionic CLI:
+    ```
+    npm install -g @ionic/cli
+    ```
+
+* Cordova:
 	```
     ionic cordova platform add ios
     ionic cordova platform add android
     ```
 
 * Cordova Secure Storage:
-	`cordova-plugin-secure-storage`
+	```
+    cordova-plugin-secure-storage
+    ```
+
+* Cordova Screen Orientation:
+    ```
+    ionic cordova plugin add cordova-plugin-screen-orientation
+    ```
 
 # Optional
 
@@ -46,6 +64,6 @@ Now run in the terminal `ionic serve --devapp` to debbug the application in your
 
 # Important
 
-See the final Result: [Minhas Despesas](https://expenses-web-system.firebaseapp.com "Project Endded")
+See the Web System: [Minhas Despesas](https://expenses-web-system.firebaseapp.com "Project Endded")
 
 Mobile Developing's Awesome!!! hushushushus
