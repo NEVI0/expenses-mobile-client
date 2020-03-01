@@ -2,13 +2,8 @@
     <ion-grid>
         <ion-row>
             <ion-col size="12">
-                <div class="header">
+                <div class="header ion-text-center">
                     <ion-title color="primary">Nova Despesa</ion-title>
-                    <ion-buttons slot="end">
-                        <ion-button routerLink="/dash/home-page">
-                            <ion-icon slot="icon-only" name="close"></ion-icon>
-                        </ion-button>
-                    </ion-buttons>
                 </div>
             </ion-col>
         </ion-row>
@@ -78,7 +73,7 @@
                         <ion-button type="submit" expand="block" color="primary" [disabled]="!form.valid || isLoading">
                             {{ isLoading ? 'Carregando...' : 'Cadastrar' }}
                         </ion-button>
-                        <ion-button expand="block" color="primary" fill="outline" (click)="clearForm()">Limpar Formulário</ion-button>
+                        <ion-button expand="block" color="primary" fill="outline" [disabled]="isLoading" (click)="onCancel()">Cancelar</ion-button>
                     </div>
 
                 </form>

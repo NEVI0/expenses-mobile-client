@@ -82,7 +82,16 @@ export class ExpenseDetailPage implements OnInit {
                     icon: 'brush',
                     cssClass: 'btn-two',
                     handler: () => {
-                        this.onUpdateExpense();
+                        this.router.navigate([
+                            '/',
+                            'update-expense',
+                            this.expense._id,
+                            this.token,
+                            this.expense.name,
+                            this.expense.value,
+                            this.expense.date,
+                            this.expense.description,
+                        ]);
                     }
                 }, {
                     text: 'Excluir Despesa',
@@ -147,8 +156,6 @@ export class ExpenseDetailPage implements OnInit {
             }
         );
     }
-
-    private onUpdateExpense() {}
 
     private onDeleteExpense() {
         this.dashService.deleteExpense(this.expense._id, this.token).subscribe(

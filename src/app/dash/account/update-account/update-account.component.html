@@ -3,7 +3,7 @@
         <ion-row>
             <ion-col size="12">
                 <div class="header ion-text-center">
-                    <ion-title color="primary">Atualizar Dados da Conta</ion-title>
+                    <ion-title color="primary">Editar Dados da Conta</ion-title>
                 </div>
             </ion-col>
         </ion-row>
@@ -67,7 +67,7 @@
 
                     <div class="btns">
                         <ion-button type="submit" expand="block" color="primary" [disabled]="!form.valid || isLoading">
-                            {{ isLoading ? 'Carregando...' : 'Atualizar' }}
+                            {{ isLoading ? 'Carregando...' : 'Editar' }}
                         </ion-button>
                         <ion-button expand="block" color="primary" fill="outline" [disabled]="isLoading" (click)="onCancelUpdate()">Cancelar</ion-button>
                     </div>

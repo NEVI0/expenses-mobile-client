@@ -21,10 +21,10 @@ const routes: Routes = [
         path: 'add-expense',
         loadChildren: () => import('./pages/add-expense/add-expense.module').then( m => m.AddExpensePageModule )
     },
-  {
-    path: 'update-expense',
-    loadChildren: () => import('./pages/update-expense/update-expense.module').then( m => m.UpdateExpensePageModule)
-  },
+    {
+        path: 'update-expense/:id/:token/:name/:value/:date/:description',
+        loadChildren: () => import('./pages/update-expense/update-expense.module').then( m => m.UpdateExpensePageModule )
+    },
 ];
 
 @NgModule({
@@ -34,4 +34,4 @@ const routes: Routes = [
     exports: [RouterModule]
 })
 
-export class AppRoutingModule { }
+export class AppRoutingModule {}

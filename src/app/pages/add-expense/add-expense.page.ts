@@ -110,9 +110,8 @@ export class AddExpensePage implements OnInit {
 
     }
 
-    clearForm() {
-        this.form.reset();
-        this.total = 0;
+    onCancel() {
+        this.router.navigate(['/dash/home-page']);
     }
 
 }

@@ -23,7 +23,6 @@ import { UpdateAccountComponent } from './account/update-account/update-account.
         IonicModule,
         DashPageRoutingModule,
         IonicStorageModule.forRoot()
-
     ],
     declarations: [
         DashPage,
