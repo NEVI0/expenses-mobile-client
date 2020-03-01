@@ -54,6 +54,8 @@ To code, I've been using Node and MongoDB to do the Backend (API), and to do the
 After adding cordova, download the app [Ionic DevApp](https://play.google.com/store/apps/details?id=io.ionic.devapp&hl=pt_BR "App") in your device.
 Now run in the terminal `ionic serve --devapp` to debbug the application in your device.
 
+* **Important**: You need to connect to the same network to debbug in your device.
+
 # Links
 
 * [Angular](https://angular.io/docs "Angular Website")
@@ -67,3 +69,5 @@ Now run in the terminal `ionic serve --devapp` to debbug the application in your
 See the Web System: [Minhas Despesas](https://expenses-web-system.firebaseapp.com "Project Endded")
 
 Mobile Developing's Awesome!!! hushushushus
+
+Copyright *Névio Costa Magagnin* - 2020/02 | [Instagram](https://www.instagram.com/nevio_costa/)
