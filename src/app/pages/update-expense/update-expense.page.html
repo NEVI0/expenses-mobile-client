@@ -1,9 +1,83 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>update-expense</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="12">
+                <div class="header ion-text-center">
+                    <ion-title color="primary">Editar Despesa</ion-title>
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
+                    <div class="form-group">
+                        <label>Nome</label> <br>
+
+                        <input type="text" formControlName="name"
+                            [ngClass]="{
+                                'input-error': form.get('name').touched && form.get('name').hasError('required')
+                            }"
+                        >
+
+                        <div class="error" *ngIf="form.get('name').touched && form.get('name').hasError('required')">
+                            <ion-label color="danger">
+                                O nome é <strong>obrigatório</strong>
+                            </ion-label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Valor</label> <br>
+
+                        <input type="number" formControlName="value"
+                            [ngClass]="{
+                                'input-error': form.get('value').touched && form.get('value').hasError('required')
+                            }"
+                        >
+
+                        <div class="error" *ngIf="form.get('value').touched && form.get('value').hasError('required')">
+                            <ion-label color="danger">
+                                O valor é <strong>obrigatório</strong>
+                            </ion-label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Data de Criação</label> <br>
+
+                        <input type="text" maxlength="10" formControlName="date"
+                            [ngClass]="{
+                                'input-error': form.get('date').touched && form.get('date').hasError('required') || form.get('date').hasError('pattern')
+                            }"
+                        >
+
+                        <div class="error" *ngIf="form.get('date').touched && form.get('date').hasError('required')">
+                            <ion-label color="danger">
+                                A data é <strong>obrigatória</strong>
+                            </ion-label>
+                        </div>
+                        <div class="error" *ngIf="form.get('date').touched && form.get('date').hasError('pattern')">
+                            <ion-label color="danger">
+                                A data <strong>precisa</strong> ser em <strong>DD/MM/AAAA</strong> ou está errada!
+                            </ion-label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Pequena Descrição{{ total == 0 || total == undefined ? '' : ': ' + total }}</label> <br>
+                        <textarea rows="5" maxLength="200" formControlName="description"></textarea>
+                    </div>
+
+                    <div class="btns">
+                        <ion-button type="submit" expand="block" color="primary" [disabled]="!form.valid || isLoading">
+                            {{ isLoading ? 'Carregando...' : 'Editar' }}
+                        </ion-button>
+                        <ion-button expand="block" color="primary" fill="outline" [disabled]="isLoading" (click)="onCancel()">Cancelar</ion-button>
+                    </div>
+
+                </form>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>
