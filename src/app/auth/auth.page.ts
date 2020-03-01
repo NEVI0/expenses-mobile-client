@@ -39,21 +39,28 @@ export class AuthPage implements OnInit {
         });
     }
 
-    onSubmit() {
+    async onSubmit() {
         this.isLoading = true;
         this.form.disable();
 
-        const stringify = JSON.stringify(this.form.value)
+        const stringify = JSON.stringify(this.form.value);
+
+        const toastRef = await this.toastCtrl.create({
+            message: 'Validando dados...'
+        });
+        toastRef.present();
 
         if (this.isLoginMode) {
             this.authService.login(JSON.parse(stringify)).subscribe(
                 resp => {
+                    toastRef.dismiss();
                     this.isLoading = false;
                     this.form.enable();
                     this.storage.set(this.AppUserData, JSON.stringify(resp));
                     this.router.navigate(['/dash']);
                 },
                 err => {
+                    toastRef.dismiss();
                     this.isLoading = false;
                     this.form.enable();
                     this.toastCtrl.create({
@@ -67,12 +74,14 @@ export class AuthPage implements OnInit {
         } else {
             this.authService.signup(JSON.parse(stringify)).subscribe(
                 resp => {
+                    toastRef.dismiss();
                     this.isLoading = false;
                     this.form.enable();
                     this.storage.set(this.AppUserData, JSON.stringify(resp));
                     this.router.navigate(['/dash']);
                 },
                 err => {
+                    toastRef.dismiss();
                     this.isLoading = false;
                     this.form.enable();
                     this.toastCtrl.create({
@@ -117,7 +126,7 @@ export class AuthPage implements OnInit {
 
         }
 
-        
+
     }
 
 }

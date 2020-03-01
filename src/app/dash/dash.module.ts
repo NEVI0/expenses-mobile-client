@@ -13,6 +13,7 @@ import { AccountComponent } from './account/account.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AllExpensesComponent } from './all-expenses/all-expenses.component';
 import { PopoverComponent } from './account/popover/popover.component';
+import { UpdateAccountComponent } from './account/update-account/update-account.component';
 
 @NgModule({
     imports: [
@@ -29,10 +30,12 @@ import { PopoverComponent } from './account/popover/popover.component';
         AccountComponent,
         AllExpensesComponent,
         HomePageComponent,
-        PopoverComponent
+        PopoverComponent,
+        UpdateAccountComponent
     ],
     entryComponents: [
-        PopoverComponent
+        PopoverComponent,
+        UpdateAccountComponent
     ]
 })
 

@@ -6,6 +6,7 @@ import { tap, take } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Expense } from '../interfaces/Expense';
 import { DataController } from '../interfaces/DataController';
+import { User } from '../interfaces/User';
 
 @Injectable({
   providedIn: 'root'
@@ -101,10 +102,24 @@ export class DashService {
 
 
 
+    forgotPassword(body: JSON) {
+        return this.http.post<string>(`${this.OpenedApiUrl}/forgotPass`, body).pipe(
+            take(1)
+        );
+    }
 
+    updateUser(body: JSON, _id: string, token: string) {
+		return this.http.put<User>(`${this.BlockedApiUrl}/user/${_id}`, body, {
+			headers: new HttpHeaders({
+                'Authorization': token
+            })
+        }).pipe(
+            take(1)
+        );
+	}
 
     deleteUser(_id: string, token: string) {
-        return this.http.delete(`${this.BlockedApiUrl}/user/${_id}`, {
+        return this.http.delete<string>(`${this.BlockedApiUrl}/user/${_id}`, {
 			headers: new HttpHeaders({
                 'Authorization': token
             })

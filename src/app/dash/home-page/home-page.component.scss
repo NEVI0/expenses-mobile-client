@@ -9,3 +9,25 @@ ion-fab-button {
 .my-loading {
     padding-top: 50px;
 }
+
+.or-text::before {
+    content: '';
+    display: inline-block;
+    background-color: #000;
+    height: 1px;
+    width: 15px;
+    margin-bottom: 5px;
+    margin-right: 4px;
+    color: #000;
+}
+
+.or-text::after {
+    content: '';
+    display: inline-block;
+    background-color: #000;
+    height: 1px;
+    width: 15px;
+    margin-bottom: 5px;
+    margin-left: 4px;
+    color: #000;
+}

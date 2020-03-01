@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PopoverController } from '@ionic/angular';
 
+import { PopoverController, ModalController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
 import { environment } from '../../../../environments/environment';
+import { UpdateAccountComponent } from '../update-account/update-account.component';
 
 @Component({
   selector: 'app-popover',
@@ -18,15 +19,32 @@ export class PopoverComponent implements OnInit {
     constructor(
         private router: Router,
         private popoverCtrl: PopoverController,
-        private storage: Storage
+        private storage: Storage,
+        private modalCtrl: ModalController
     ) {}
 
     ngOnInit() {}
 
     onLogout() {
-        this.storage.remove(this.AppUserData).then(async value => {
+        this.storage.clear().then(async value => {
             this.router.navigate(['/auth']);
             await this.popoverCtrl.dismiss();
+        });
+    }
+
+    onShowModal() {
+        this.storage.get(this.AppUserData).then(async value => {
+            const user = JSON.parse(value);
+
+            const modalRef = await this.modalCtrl.create({
+                component: UpdateAccountComponent,
+                animated: true,
+                componentProps: {
+                    user: user
+                }
+            });
+            this.popoverCtrl.dismiss();
+            modalRef.present();
         });
     }
 

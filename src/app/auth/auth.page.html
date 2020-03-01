@@ -140,7 +140,7 @@
                         fill="clear"
                         size="small"
                         (click)="onForgotPassword()"
-                        [disabled]="isLoading || form.get('email').value == ''"
+                        [disabled]="isLoading || form.get('email').value == '' || form.get('email').value == null"
                     >
                         Esqueci minha Senha
                     </ion-button>

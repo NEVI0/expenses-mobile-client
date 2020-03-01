@@ -56,7 +56,7 @@
                         <p class="ion-text-justify">Por motivos de segurança, deixamos a atualização de dados e a redefinição de senha separados, para que haja o melhor controle de segurança da sua conta. Nesta opção, será enviado um e-mail para que você possa redefinir sua senha.</p>
 
                         <div class="ion-text-center ion-margin-top">
-                            <ion-button color="primary" fill="outline">Enviar E-mail</ion-button>
+                            <ion-button color="primary" fill="outline" [disabled]="didSendEmail" (click)="onSendEmail()">Enviar E-mail</ion-button>
                         </div>
                     </ion-card-content>
                 </ion-card>

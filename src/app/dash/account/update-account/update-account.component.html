@@ -1,0 +1,80 @@
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="12">
+                <div class="header ion-text-center">
+                    <ion-title color="primary">Atualizar Dados da Conta</ion-title>
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12">
+
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+                    <div class="form-group">
+                        <label>Nome de Usuário</label> <br>
+
+                        <input type="text" formControlName="name"
+                            [ngClass]="{
+                                'input-error': form.get('name').touched && form.get('name').hasError('required')
+                            }"
+                        >
+
+                        <div class="error" *ngIf="form.get('name').touched && form.get('name').hasError('required')">
+                            <ion-label color="danger">
+                                O nome é <strong>obrigatório</strong>
+                            </ion-label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Seu Salário</label> <br>
+
+                        <input type="number" formControlName="salary"
+                            [ngClass]="{
+                                'input-error': form.get('salary').touched && form.get('salary').hasError('required')
+                            }"
+                        >
+
+                        <div class="error" *ngIf="form.get('salary').touched && form.get('salary').hasError('required')">
+                            <ion-label color="danger">
+                                Você <strong>precisa</strong> informar seu salário
+                            </ion-label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>E-mail</label> <br>
+
+                        <input type="email" formControlName="email"
+                            [ngClass]="{
+                                'input-error': form.get('email').touched && form.get('email').hasError('required') || form.get('email').hasError('email')
+                            }"
+                        >
+
+                        <div class="error" *ngIf="form.get('email').touched && form.get('email').hasError('required')">
+                            <ion-label color="danger">
+                                O e-mail é <strong>obrigatório</strong>
+                            </ion-label>
+                        </div>
+                        <div class="error" *ngIf="form.get('email').touched && form.get('email').hasError('email')">
+                            <ion-label color="danger">
+                                O e-mail está <strong>incorreto</strong>
+                            </ion-label>
+                        </div>
+                    </div>
+
+                    <div class="btns">
+                        <ion-button type="submit" expand="block" color="primary" [disabled]="!form.valid || isLoading">
+                            {{ isLoading ? 'Carregando...' : 'Atualizar' }}
+                        </ion-button>
+                        <ion-button expand="block" color="primary" fill="outline" [disabled]="isLoading" (click)="onCancelUpdate()">Cancelar</ion-button>
+                    </div>
+
+                </form>
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

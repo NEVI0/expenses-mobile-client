@@ -62,13 +62,12 @@
                 <div *ngIf="lastTenExpense$ | async as expenses; else loading">
 
                     <div *ngIf="expenses == '' || expenses == []; else lastExpenses" class="ion-padding">
-                        <fieldset class="ion-text-justify">
-                            <legend>Mensagem</legend>
-                            Você não tem nenhuma despesa cadastrada. Click no botão no <b>canto inferior direito</b> para adicionar despesas
-                        </fieldset>
-                        <p class="ion-text-center">
-                            Arraste para baixo para atualizar!
-                        </p>
+                        <div class="ion-text-center">
+                            <p>Você não possui nenhuma despesa cadastrada.</p>
+                            <ion-button routerLink="/add-expense">Adicionar Despesa</ion-button>
+                            <p class="or-text">OU</p>
+                            <p>Arraste o dedo para baixo!</p>
+                        </div>
                     </div>
 
                     <ng-template #lastExpenses>

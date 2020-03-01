@@ -20,11 +20,13 @@ export class AccountComponent implements OnInit {
     private readonly StorageTheme = environment.StorageTheme;
 
     private userId: string;
-    private userToken: string;
+    private token: string;
 
     public userName: string;
     public userEmail: string;
+
     public darkMode: boolean;
+    public didSendEmail: boolean;
 
     constructor(
         private popoverCtrl: PopoverController,
@@ -39,6 +41,10 @@ export class AccountComponent implements OnInit {
         this.onStart();
     }
 
+    ionViewWillEnter() {
+        this.onStart();
+    }
+
     onStart() {
         if (document.body.classList.contains('light')) {
             this.darkMode = false;
@@ -48,10 +54,10 @@ export class AccountComponent implements OnInit {
 
         this.storage.get(this.AppUserData).then(value => {
             const user = JSON.parse(value);
-            this.userId = user._id;
-            this.userToken = user.token;
             this.userName = user.name;
             this.userEmail = user.email;
+            this.userId = user._id;
+            this.token = user.token;
         });
     }
 
@@ -101,7 +107,7 @@ export class AccountComponent implements OnInit {
     }
 
     private onDeleteAccount() {
-        this.dashService.deleteUser(this.userId, this.userToken).subscribe(
+        this.dashService.deleteUser(this.userId, this.token).subscribe(
             async resp => {
                 const toast = await this.toastCtrl.create({
                     message: 'Estamos deletando seus dados...'
@@ -118,6 +124,30 @@ export class AccountComponent implements OnInit {
                     duration: 3500
                 });
                 toast.present();
+            }
+        );
+    }
+
+    onSendEmail() {
+        const stringify = '{ "email": "'+this.userEmail+'" }';
+
+        this.didSendEmail = true;
+        this.dashService.forgotPassword(JSON.parse(stringify)).subscribe(
+            async resp => {
+                this.didSendEmail = false;
+                const toastRef = await this.toastCtrl.create({
+                    message: 'Um e-mail foi enviado para você!',
+                    duration: 3500
+                });
+                toastRef.present();
+            },
+            async err => {
+                this.didSendEmail = false;
+                const toastRef = await this.toastCtrl.create({
+                    message: err.error.message,
+                    duration: 3500
+                });
+                toastRef.present();
             }
         );
     }
