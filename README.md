@@ -41,7 +41,7 @@ To code, I've been using Node and MongoDB to do the Backend (API), and to do the
 
 * Cordova Secure Storage:
 	```
-    cordova-plugin-secure-storage
+    ionic cordova plugin add cordova-plugin-secure-storage
     ```
 
 * Cordova Screen Orientation:
