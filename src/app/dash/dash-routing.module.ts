@@ -6,6 +6,7 @@ import { DashPage } from './dash.page';
 import { AccountComponent } from './account/account.component';
 import { AllExpensesComponent } from './all-expenses/all-expenses.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { ChartsComponent } from './charts/charts.component';
 
 const routes: Routes = [
     { path: '', component: DashPage, children:
@@ -14,6 +15,7 @@ const routes: Routes = [
             { path: 'account', component: AccountComponent },
             { path: 'all-expenses', component: AllExpensesComponent },
             { path: 'home-page', component: HomePageComponent },
+            { path: 'charts', component: ChartsComponent }
         ]
     },
 ];

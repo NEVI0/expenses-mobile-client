@@ -14,6 +14,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { AllExpensesComponent } from './all-expenses/all-expenses.component';
 import { PopoverComponent } from './account/popover/popover.component';
 import { UpdateAccountComponent } from './account/update-account/update-account.component';
+import { ChartsComponent } from './charts/charts.component';
 
 @NgModule({
     imports: [
@@ -30,7 +31,8 @@ import { UpdateAccountComponent } from './account/update-account/update-account.
         AllExpensesComponent,
         HomePageComponent,
         PopoverComponent,
-        UpdateAccountComponent
+        UpdateAccountComponent,
+        ChartsComponent
     ],
     entryComponents: [
         PopoverComponent,
