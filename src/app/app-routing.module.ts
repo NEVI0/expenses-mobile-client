@@ -24,11 +24,7 @@ const routes: Routes = [
     {
         path: 'update-expense/:id/:token/:name/:value/:date/:description',
         loadChildren: () => import('./pages/update-expense/update-expense.module').then( m => m.UpdateExpensePageModule )
-    },
-    {
-        path: 'charts',
-        loadChildren: () => import('./pages/charts/charts.module').then( m => m.ChartsPageModule )
-    },
+    }
 ];
 
 @NgModule({
