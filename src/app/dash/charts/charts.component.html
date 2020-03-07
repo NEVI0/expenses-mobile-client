@@ -16,7 +16,7 @@
 
                 <div *ngIf="chartData$ | async as chartData; else loading">
 
-                    <div *ngIf="chartData == '' || chartData == [] || chartData == undefined; else chart" class="ion-text-center">
+                    <div *ngIf="chartData == '' || chartData == [] || chartData == undefined; else chart" class="ion-text-center ion-padding-top">
                         <p>Você <strong>precisa</strong> adicionar despesas, assim o gráfico aparecerá!</p>
                         <ion-button routerLink="/add-expense">Adicionar Despesa</ion-button>
                     </div>
