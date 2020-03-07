@@ -31,7 +31,8 @@ export class ChartsComponent implements OnInit {
         },
         layout: {
             padding: {
-                right: 30
+                right: 30,
+                bottom: 10
             }
         }
     };
@@ -69,6 +70,10 @@ export class ChartsComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        this.onStart();
+    }
+
+    ionViewWillEnter() {
         this.onStart();
     }
 
