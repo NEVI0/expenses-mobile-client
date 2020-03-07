@@ -7,6 +7,7 @@ import { environment } from '../../environments/environment';
 import { Expense } from '../interfaces/Expense';
 import { DataController } from '../interfaces/DataController';
 import { User } from '../interfaces/User';
+import { ChartDataController } from '../interfaces/ChartDataController';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,6 @@ export class DashService {
 
     private readonly OpenedApiUrl = environment.OpenedApiUrl;
     private readonly BlockedApiUrl = environment.BlockedApiUrl;
-    private readonly AppUserData = environment.StorageUserData;
 
     constructor(private http: HttpClient) {}
 
@@ -60,6 +60,16 @@ export class DashService {
 		);
     }
 
+    getChartData(_id: string, token: string) {
+		return this.http.get<ChartDataController[]>(`${this.BlockedApiUrl}/chartController/${_id}`, {
+			headers: new HttpHeaders({
+                'Authorization': token
+            })
+		}).pipe(
+			tap(resp => resp)
+		);
+	}
+
     search(_id: string, tag: string, token: string) {
 		return this.http.get<Expense[]>(`${this.BlockedApiUrl}/search/${_id}?tag=${tag}`, {
 			headers: new HttpHeaders({
@@ -99,8 +109,6 @@ export class DashService {
             take(1)
         );
     }
-
-
 
     forgotPassword(body: JSON) {
         return this.http.post<string>(`${this.OpenedApiUrl}/forgotPass`, body).pipe(
