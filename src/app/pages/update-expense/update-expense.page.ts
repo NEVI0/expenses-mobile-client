@@ -82,7 +82,8 @@ export class UpdateExpensePage implements OnInit {
                 this.form.enable();
                 const toastRef = await this.toastCtrl.create({
                     message: 'A despesa foi atualizada com sucesso!',
-                    duration: 3500
+                    duration: 3500,
+                    buttons: [{ text: 'OK', role: 'cancel' }]
                 });
                 toastRef.present();
                 this.router.navigate(['/', 'expense-detail', this.expenseId, this.token]);
@@ -92,7 +93,8 @@ export class UpdateExpensePage implements OnInit {
                 this.form.enable();
                 const toastRef = await this.toastCtrl.create({
                     message: err.error.message,
-                    duration: 3500
+                    duration: 3500,
+                    buttons: [{ text: 'OK', role: 'cancel' }]
                 });
                 toastRef.present();
             }

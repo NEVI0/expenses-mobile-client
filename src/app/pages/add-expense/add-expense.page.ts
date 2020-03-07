@@ -92,7 +92,8 @@ export class AddExpensePage implements OnInit {
                 this.form.enable();
                 const toast = await this.toastCtrl.create({
                     message: 'Despesa adicionada com sucesso!',
-                    duration: 3500
+                    duration: 3500,
+                    buttons: [{ text: 'OK', role: 'cancel' }]
                 });
                 toast.present();
                 this.router.navigate(['/dash/home-page']);
@@ -102,7 +103,8 @@ export class AddExpensePage implements OnInit {
                 this.form.enable();
                 const toast = await this.toastCtrl.create({
                     message: err.error.message,
-                    duration: 3500
+                    duration: 3500,
+                    buttons: [{ text: 'OK', role: 'cancel' }]
                 });
                 toast.present();
             }

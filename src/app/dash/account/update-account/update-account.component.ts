@@ -52,7 +52,8 @@ export class UpdateAccountComponent implements OnInit {
 
                     const toastRef = await this.toastCtrl.create({
                         message: 'Seus dados foram atualizados com sucesso!',
-                        duration: 3500
+                        duration: 3500,
+                        buttons: [{ text: 'OK', role: 'cancel' }]
                     });
                     this.form.enable();
                     this.modalCtrl.dismiss();
@@ -62,7 +63,8 @@ export class UpdateAccountComponent implements OnInit {
 
                     const toastRef = await this.toastCtrl.create({
                         message: 'Ocorreu um error, tente mais tarde!',
-                        duration: 3500
+                        duration: 3500,
+                        buttons: [{ text: 'OK', role: 'cancel' }]
                     });
                     this.form.enable();
                     this.modalCtrl.dismiss();
@@ -73,7 +75,8 @@ export class UpdateAccountComponent implements OnInit {
             async err => {
                 const toastRef = await this.toastCtrl.create({
                     message: err.error.message,
-                    duration: 3500
+                    duration: 3500,
+                    buttons: [{ text: 'OK', role: 'cancel' }]
                 });
                 this.form.enable();
                 this.modalCtrl.dismiss();

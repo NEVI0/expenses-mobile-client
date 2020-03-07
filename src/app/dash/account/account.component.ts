@@ -121,7 +121,8 @@ export class AccountComponent implements OnInit {
             async err => {
                 const toast = await this.toastCtrl.create({
                     message: err.error.message,
-                    duration: 3500
+                    duration: 3500,
+                    buttons: [{ text: 'OK', role: 'cancel' }]
                 });
                 toast.present();
             }
@@ -137,7 +138,8 @@ export class AccountComponent implements OnInit {
                 this.didSendEmail = false;
                 const toastRef = await this.toastCtrl.create({
                     message: 'Um e-mail foi enviado para você!',
-                    duration: 3500
+                    duration: 3500,
+                    buttons: [{ text: 'OK', role: 'cancel' }]
                 });
                 toastRef.present();
             },
@@ -145,7 +147,8 @@ export class AccountComponent implements OnInit {
                 this.didSendEmail = false;
                 const toastRef = await this.toastCtrl.create({
                     message: err.error.message,
-                    duration: 3500
+                    duration: 3500,
+                    buttons: [{ text: 'OK', role: 'cancel' }]
                 });
                 toastRef.present();
             }

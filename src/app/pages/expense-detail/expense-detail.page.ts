@@ -78,6 +78,13 @@ export class ExpenseDetailPage implements OnInit {
                         this.onUpdateStatus();
                     },
                 }, {
+                    text: 'Duplicar Despesa',
+                    icon: 'copy',
+                    cssClass: 'btn-four',
+                    handler: () => {
+                        this.onDuplicateExpense();
+                    }
+                }, {
                     text: 'Editar Dados',
                     icon: 'brush',
                     cssClass: 'btn-two',
@@ -141,16 +148,61 @@ export class ExpenseDetailPage implements OnInit {
             async resp => {
                 const toastRef = await this.toastCtrl.create({
                     message: 'O status da despesa foi mudado!',
-                    duration: 3500
+                    duration: 3500,
+                    buttons: [{ text: 'OK', role: 'cancel' }]
                 });
                 toastRef.present();
                 this.onStart();
             },
             async err => {
-                console.log(err);
                 const toastRef = await this.toastCtrl.create({
                     message: err.error.message,
-                    duration: 3500
+                    duration: 3500,
+                    buttons: [{ text: 'OK', role: 'cancel' }]
+                });
+                toastRef.present();
+            }
+        );
+    }
+
+    private onDuplicateExpense() {
+        const date = {
+            d: new Date().getDate(),
+            m: new Date().getMonth(),
+            y: new Date().getFullYear()
+        }
+
+        var d = null;
+        var m = null;
+
+        if (date.d >= 1 && date.d <= 9) d = "0" + date.d; else d = date.d;
+        if (date.m >= 1 && date.m <= 9) m = "0" + (date.m + 1); else m = date.m;
+
+        const json = {
+            name: this.expense.name,
+            value: this.expense.value,
+            date: `${d}/${m}/${date.y}`,
+            description: this.expense.description,
+            userId: this.expense.userId
+        };
+
+        const stringify = JSON.stringify(json);
+
+        this.dashService.createExpense(JSON.parse(stringify), this.token).subscribe(
+            async resp => {
+                const toastRef = await this.toastCtrl.create({
+                    message: 'A despesa foi duplicada!',
+                    duration: 3500,
+                    buttons: [{ text: 'OK', role: 'cancel' }]
+                });
+                toastRef.present();
+                this.router.navigate(['/', 'dash', this.lastPage]);
+            },
+            async err => {
+                const toastRef = await this.toastCtrl.create({
+                    message: err.error.message,
+                    duration: 3500,
+                    buttons: [{ text: 'OK', role: 'cancel' }]
                 });
                 toastRef.present();
             }
@@ -162,7 +214,8 @@ export class ExpenseDetailPage implements OnInit {
             async resp => {
                 const toastRef = await this.toastCtrl.create({
                     message: 'Sua despesa foi deletada com sucesso!',
-                    duration: 3500
+                    duration: 3500,
+                    buttons: [{ text: 'OK', role: 'cancel' }]
                 });
                 toastRef.present();
                 this.router.navigate(['/dash/home-page']);
@@ -171,7 +224,8 @@ export class ExpenseDetailPage implements OnInit {
                 console.log(err);
                 const toastRef = await this.toastCtrl.create({
                     message: err.error.message,
-                    duration: 3500
+                    duration: 3500,
+                    buttons: [{ text: 'OK', role: 'cancel' }]
                 });
                 toastRef.present();
             }
