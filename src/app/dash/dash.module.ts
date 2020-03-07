@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { ChartsModule } from 'ng2-charts';
+
 import { IonicStorageModule } from '@ionic/storage';
 import { IonicModule } from '@ionic/angular';
 
@@ -22,6 +24,7 @@ import { ChartsComponent } from './charts/charts.component';
         ReactiveFormsModule,
         HttpClientModule,
         IonicModule,
+        ChartsModule,
         DashPageRoutingModule,
         IonicStorageModule.forRoot()
     ],
