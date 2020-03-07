@@ -31,6 +31,7 @@
     margin-top: 10px;
 }
 .header ion-title {
+    color: #6200EA;
     font-size: 25px;
     font-weight: bold;
 }
@@ -176,8 +177,20 @@ ion-tab-bar {
 }
 /* END */
 
+/* Home Page Expenses List */
+.expenses-list ion-icon {
+    color: #6200EA;
+}
+/* END */
+
 /* Dark Styles */
 .dark {
+
+    .header ion-title {
+        color: #7C4DFF;
+        font-size: 25px;
+        font-weight: bold;
+    }
 
     .alert-wrapper .alert-message {
         text-align: justify;
@@ -257,6 +270,10 @@ ion-tab-bar {
 
     .card-settings p {
         color: #fff;
+    }
+
+    .expenses-list ion-icon {
+        color: #7C4DFF;
     }
 
 }

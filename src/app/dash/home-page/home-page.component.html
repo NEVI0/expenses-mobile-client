@@ -7,7 +7,7 @@
         <ion-row>
             <ion-col size="12">
                 <div class="header">
-                    <ion-title color="primary">Home</ion-title>
+                    <ion-title>Home</ion-title>
                 </div>
             </ion-col>
         </ion-row>
@@ -41,8 +41,8 @@
                                         <ion-label class="ion-label-title">Média de Gastos</ion-label>
                                         <ion-label class="ion-text-right">{{ userDataCtrl.avgOfValues | currency }}</ion-label>
                                     </ion-item>
-                                    <ion-item>
-                                        <ion-icon slot="start" name="layers" color="primary"></ion-icon>
+                                    <ion-item class="expenses-list">
+                                        <ion-icon slot="start" name="layers"></ion-icon>
                                         <ion-label class="ion-label-title">Total de Despesas</ion-label>
                                         <ion-label class="ion-text-right">{{ userDataCtrl.numberOfExpenses }}</ion-label>
                                     </ion-item>
@@ -81,10 +81,11 @@
                                 <ion-list lines="none">
                                     <ion-item
                                         *ngFor="let item of expenses"
+                                        class="expenses-list"
                                         [routerLink]="['/', 'expense-detail', item._id, userToken]"
                                         [queryParams]="{ page: 'home' }"
                                     >
-                                        <ion-icon slot="start" name="reader" color="primary"></ion-icon>
+                                        <ion-icon slot="start" name="reader"></ion-icon>
                                         <ion-label class="ion-label-title">{{ item.name }}</ion-label>
                                         <ion-label class="ion-text-right">{{ item.value | currency }}</ion-label>
                                     </ion-item>
@@ -92,10 +93,6 @@
 
                             </ion-card-content>
                         </ion-card>
-
-                        <div class="ion-margin-top ion-text-center">
-                            <ion-button color="primary" routerLink="/charts">Analizar Gráficos</ion-button>
-                        </div>
 
                     </ng-template>
 
