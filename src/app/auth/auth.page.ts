@@ -65,7 +65,8 @@ export class AuthPage implements OnInit {
                     this.form.enable();
                     this.toastCtrl.create({
                         message: err.error.message,
-                        duration: 3500
+                        duration: 3500,
+                        buttons: [{ text: 'OK', role: 'cancel' }]
                     }).then(el => {
                         el.present();
                     });
@@ -86,7 +87,8 @@ export class AuthPage implements OnInit {
                     this.form.enable();
                     this.toastCtrl.create({
                         message: err.error.message,
-                        duration: 3500
+                        duration: 3500,
+                        buttons: [{ text: 'OK', role: 'cancel' }]
                     }).then(el => {
                         el.present();
                     });
@@ -100,7 +102,8 @@ export class AuthPage implements OnInit {
         if (this.form.get('email').value == '') {
             const toast = await this.toastCtrl.create({
                 message: 'Você precisa indicar um e-mail no formulário',
-                duration: 3500
+                duration: 3500,
+                buttons: [{ text: 'OK', role: 'cancel' }]
             });
             toast.present();
         } else {
@@ -111,14 +114,16 @@ export class AuthPage implements OnInit {
                 async resp => {
                     const toast = await this.toastCtrl.create({
                         message: 'Um e-mail foi enviado para o e-mail indicado',
-                        duration: 3500
+                        duration: 3500,
+                        buttons: [{ text: 'OK', role: 'cancel' }]
                     });
                     toast.present();
                 },
                 async err => {
                     const toast = await this.toastCtrl.create({
                         message: err.error.message,
-                        duration: 3500
+                        duration: 3500,
+                        buttons: [{ text: 'OK', role: 'cancel' }]
                     });
                     toast.present();
                 }
