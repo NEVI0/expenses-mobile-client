@@ -61,6 +61,13 @@ export class AccountComponent implements OnInit {
         });
     }
 
+    onRefresh(event) {
+        setTimeout(() => {
+            this.onStart();
+            event.target.complete();
+        }, 1500);
+    }
+
     onChangeTheme() {
         if (document.body.classList.contains('light')) {
             this.darkMode = true;
