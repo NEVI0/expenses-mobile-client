@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 import { IonContent } from '@ionic/angular';
 
 import { Observable } from 'rxjs';
-import { map, debounceTime, switchMap, distinctUntilChanged } from 'rxjs/operators';
+import { map, debounceTime, switchMap, distinctUntilChanged, tap } from 'rxjs/operators';
 
 import { DashService } from '../dash.service';
 import { Expense } from '../../interfaces/Expense';
@@ -29,6 +29,7 @@ export class AllExpensesComponent implements OnInit {
     public tag = new FormControl();
     public userToken: string;
     public scrollToTop: boolean;
+    public total: number;
 
     constructor(
         private dashService: DashService,
@@ -48,7 +49,9 @@ export class AllExpensesComponent implements OnInit {
             const user = JSON.parse(value);
 
             this.userToken = user.token;
-            this.expenses$ = this.dashService.getAllExpenses(user._id, user.token);
+            this.expenses$ = this.dashService.getAllExpenses(user._id, user.token).pipe(
+                tap(resp => this.total = resp.length)
+            );
             this.searchResults$ = this.tag.valueChanges.pipe(
                 map(result => result.trim()),
                 debounceTime(250),

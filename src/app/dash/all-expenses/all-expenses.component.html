@@ -61,6 +61,9 @@
                     </div>
 
                     <ng-template #allExpenses>
+                        <div class="total-of-exspenses">
+                            <strong>Total de Despesas: </strong> {{ total }}
+                        </div>
                         <ion-list lines="none">
                             <ion-item
                                 *ngFor="let item of expenses"

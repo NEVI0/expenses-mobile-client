@@ -37,9 +37,10 @@ export class AppComponent implements OnInit {
     }
 
     initializeApp() {
+        this.splashScreen.show();
         this.platform.ready().then(() => {
             this.statusBar.styleDefault();
-            this.splashScreen.show();
+            this.splashScreen.hide();
             this.screenOrientation.lock('portrait');
         });
     }
