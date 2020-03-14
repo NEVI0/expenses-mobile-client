@@ -1,6 +1,15 @@
 <ion-content padding>
     <ion-grid>
         <ion-row>
+            <ion-col size="12">
+                <ion-card>
+                    <ion-card-content class="ion-text-center">
+                        <ion-title color="primary" class="app-name">Despesas Net</ion-title>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+        <ion-row>
             <ion-col size="12" padding>
 
                 <ion-card padding>
@@ -129,10 +138,7 @@
 
             </ion-col>
         </ion-row>
-    </ion-grid>
-
-    <ion-grid *ngIf="isLoginMode">
-        <ion-row>
+        <ion-row *ngIf="isLoginMode">
             <ion-col size="12" padding>
                 <ion-card>
                     <ion-button
