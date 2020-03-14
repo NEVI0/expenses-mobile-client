@@ -38,19 +38,39 @@ export class ChartsComponent implements OnInit {
     };
     public barChartData: ChartDataSets[] = [{
         data: [null, null, null, null, null, null, null, null, null, null, null, null],
-        label: 'Média'
+        label: 'Lucro'
     }, {
         data: [null, null, null, null, null, null, null, null, null, null, null, null],
-        label: 'Total'
+        label: 'Total Gasto'
+    }, {
+        data: [null, null, null, null, null, null, null, null, null, null, null, null],
+        label: 'Média de Gastos'
+    }, {
+        data: [null, null, null, null, null, null, null, null, null, null, null, null],
+        label: 'Total de Despesas'
     }];
 
     public barChartColors: Color[] =  [{
-        backgroundColor: 'rgba(98, 0, 234, 1)',
-        borderColor: 'rgba(98, 0, 234, 1)',
-        pointBackgroundColor: 'rgba(98, 0, 234, 1)',
+        backgroundColor: 'rgba(0, 200, 83, 1)',
+        borderColor: 'rgba(0, 200, 83, 1)',
+        pointBackgroundColor: 'rgba(0, 200, 83, 1)',
         pointBorderColor: '#fff',
         pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: 'rgba(98, 0, 234, 1)'
+        pointHoverBorderColor: 'rgba(0, 200, 83, 1)'
+    }, {
+        backgroundColor: 'rgba(229, 57, 53, 1)',
+        borderColor: 'rgba(229, 57, 53, 1)',
+        pointBackgroundColor: 'rgba(229, 57, 53, 1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(229, 57, 53, 1)'
+    }, {
+        backgroundColor: 'rgba(255, 206, 0, 1)',
+        borderColor: 'rgba(255, 206, 0, 1)',
+        pointBackgroundColor: 'rgba(255, 206, 0, 1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(255, 206, 0, 1)'
     }, {
         backgroundColor: 'rgba(124, 77, 255, 1)',
         borderColor: 'rgba(124, 77, 255, 1)',
@@ -84,8 +104,10 @@ export class ChartsComponent implements OnInit {
             this.chartData$ = this.dashService.getChartData(user._id, user.token).pipe(
                 tap(resp => {
                     resp.forEach(item => {
-                        this.barChartData[0].data[(item._id - 1)] = item.avg;
-                        this.barChartData[1].data[(item._id - 1)] = item.total;
+                        this.barChartData[0].data[(item._id - 1)] = user.salary - item.sum;
+                        this.barChartData[1].data[(item._id - 1)] = item.sum;
+                        this.barChartData[2].data[(item._id - 1)] = item.avg;
+                        this.barChartData[3].data[(item._id - 1)] = item.total;
                     });
                 })
             );
