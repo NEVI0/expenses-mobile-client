@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
         private router: Router,
         private authService: AuthService,
         private alertCtrl: AlertController,
-        private screenOrientation: ScreenOrientation
+        private screenOrientation: ScreenOrientation,
     ) {
         this.initializeApp();
     }
@@ -68,6 +68,7 @@ export class AppComponent implements OnInit {
                 document.body.classList.add('light');
             }
         });
+
         this.storage.get(this.AppUserData).then(value => {
             if (value == '' || value == undefined || value == null) {
                 this.router.navigate(['/auth']);
@@ -95,7 +96,6 @@ export class AppComponent implements OnInit {
 
                             }
                         }
-
                     }
                 );
             }
