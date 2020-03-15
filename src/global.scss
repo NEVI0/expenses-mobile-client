@@ -186,6 +186,12 @@ ion-tab-bar {
 }
 /* END */
 
+/* Results of the Search in All Expenses Component */
+.results-of-search {
+    color: #000;
+}
+/* END */
+
 /* Dark Styles */
 .dark {
 
@@ -277,6 +283,10 @@ ion-tab-bar {
 
     .expenses-list ion-icon {
         color: #7C4DFF;
+    }
+
+    .results-of-search {
+        color: #fff;
     }
 
 }

@@ -26,23 +26,34 @@
                 <div *ngIf="searchResults$ | async as results">
                     <ion-card *ngIf="tag.value !== ''" class="card-border-botton">
                         <ion-card-content>
-                            <div *ngIf="results == '' || results == [];else allResults" class="ion-text-center">
+                            <div *ngIf="results == '' || results == []; else allResults" class="ion-text-center">
                                 Nada encontrado!
                             </div>
 
                             <ng-template #allResults>
-                                <ion-list lines="none">
-                                    <ion-item
-                                        *ngFor="let item of results"
-                                        class="expenses-list"
-                                        [routerLink]="['/', 'expense-detail', item._id, userToken]"
-                                        [queryParams]="{ page: 'all-expenses' }"
-                                    >
-                                        <ion-icon slot="start" name="reader"></ion-icon>
-                                        <ion-label class="ion-label-title">{{ item.name }}</ion-label>
-                                        <ion-label class="ion-text-right">{{ item.value | currency }}</ion-label>
-                                    </ion-item>
-                                </ion-list>
+
+                                <div *ngIf="totalResults == 0 || totalResults == undefined; else listOfResults" class="ion-text-center">
+                                    Pesquisando...
+                                </div>
+
+                                <ng-template #listOfResults>
+                                    <ion-list lines="none">
+                                        <div class="results-of-search">
+                                            <strong>Resultados: </strong> {{ totalResults }}
+                                        </div>
+                                        <ion-item
+                                            *ngFor="let item of results"
+                                            class="expenses-list"
+                                            [routerLink]="['/', 'expense-detail', item._id, userToken]"
+                                            [queryParams]="{ page: 'all-expenses' }"
+                                        >
+                                            <ion-icon slot="start" name="reader"></ion-icon>
+                                            <ion-label class="ion-label-title">{{ item.name }}</ion-label>
+                                            <ion-label class="ion-text-right">{{ item.value | currency }}</ion-label>
+                                        </ion-item>
+                                    </ion-list>
+                                </ng-template>
+
                             </ng-template>
                         </ion-card-content>
                     </ion-card>
@@ -61,7 +72,7 @@
                     </div>
 
                     <ng-template #allExpenses>
-                        <div class="total-of-exspenses">
+                        <div class="total-of-expenses">
                             <strong>Total de Despesas: </strong> {{ total }}
                         </div>
                         <ion-list lines="none">

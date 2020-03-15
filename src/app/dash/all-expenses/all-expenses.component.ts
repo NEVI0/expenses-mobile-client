@@ -30,6 +30,7 @@ export class AllExpensesComponent implements OnInit {
     public userToken: string;
     public scrollToTop: boolean;
     public total: number;
+    public totalResults: number;
 
     constructor(
         private dashService: DashService,
@@ -56,7 +57,8 @@ export class AllExpensesComponent implements OnInit {
                 map(result => result.trim()),
                 debounceTime(250),
                 distinctUntilChanged(),
-                switchMap(result => this.dashService.search(user._id, result, user.token))
+                switchMap(result => this.dashService.search(user._id, result, user.token)),
+                tap(results => this.totalResults = results.length)
             );
         });
     }
