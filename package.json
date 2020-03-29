@@ -1,8 +1,8 @@
 {
-  "name": "expenses-mobile-client",
+  "name": "Despesas Net",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Nevio Costa Magagnin",
+  "homepage": "https://expenses-web-system.firebaseapp.com/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
