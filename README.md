@@ -19,7 +19,7 @@ To code, I've been using Node and MongoDB to do the Backend (API), and to do the
 * Make the User CRUD :ballot_box_with_check:
 * Make the AVG of expenses by month :ballot_box_with_check:
 * Improve the application style :ballot_box_with_check:
-* Make a Splash Screen :x:
+* Make a Splash Screen :ballot_box_with_check:
 
 # Configurations
 
